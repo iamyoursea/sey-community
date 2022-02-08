@@ -5,7 +5,9 @@ import com.sey.community.springboot.domain.posts.Posts;
 import com.sey.community.springboot.domain.posts.PostsRepository;
 import com.sey.community.springboot.web.dto.PostsSaveRequestDTO;
 import com.sey.community.springboot.web.dto.PostsUpdateRequestDTO;
-import org.junit.After;
+//import org.junit.After;
+//import org.junit.Before;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
@@ -53,7 +55,7 @@ public class PostsApiControllerTest {
                 .build();
     }
 
-    @After
+    @AfterEach
     public void tearDown() throws Exception {
         postsRepository.deleteAll();
     }
@@ -109,7 +111,7 @@ public class PostsApiControllerTest {
 
         String url = "http://localhost:"+port+"/api/v1/posts/"+updateId;
 
-        HttpEntity<PostsUpdateRequestDTO> requestEntity = new HttpEntity<>(requestDto);
+        //HttpEntity<PostsUpdateRequestDTO> requestEntity = new HttpEntity<>(requestDto);
 
         //when
         //ResponseEntity<Long> responseEntity = restTemplate.exchange(url, HttpMethod.PUT, requestEntity, Long.class);
