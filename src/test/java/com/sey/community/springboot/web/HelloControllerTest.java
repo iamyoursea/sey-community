@@ -1,6 +1,5 @@
 package com.sey.community.springboot.web;
 
-import com.sey.community.springboot.web.HelloController;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -2,8 +2,8 @@ package com.sey.community.springboot.web;
 
 import com.sey.community.springboot.domain.posts.Posts;
 import com.sey.community.springboot.domain.posts.PostsRepository;
-import com.sey.community.springboot.web.dto.PostsSaveRequestDto;
-import com.sey.community.springboot.web.dto.PostsUpdateRequestDto;
+import com.sey.community.springboot.web.dto.PostsSaveRequestDTO;
+import com.sey.community.springboot.web.dto.PostsUpdateRequestDTO;
 import org.junit.After;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
@@ -43,7 +43,7 @@ public class PostsApiControllerTest {
         //given
         String title = "title";
         String content = "content";
-        PostsSaveRequestDto requestDto = PostsSaveRequestDto.builder()
+        PostsSaveRequestDTO requestDto = PostsSaveRequestDTO.builder()
                 .title(title)
                 .content(content)
                 .author("author")
@@ -75,14 +75,14 @@ public class PostsApiControllerTest {
         String expectedTitle = "title2";
         String expectedContent = "content2";
 
-        PostsUpdateRequestDto requestDto = PostsUpdateRequestDto.builder()
+        PostsUpdateRequestDTO requestDto = PostsUpdateRequestDTO.builder()
                 .title(expectedTitle)
                 .content(expectedContent)
                 .build();
 
         String url = "http://localhost:"+port+"/api/v1/posts/"+updateId;
 
-        HttpEntity<PostsUpdateRequestDto> requestEntity = new HttpEntity<>(requestDto);
+        HttpEntity<PostsUpdateRequestDTO> requestEntity = new HttpEntity<>(requestDto);
 
         //when
         ResponseEntity<Long> responseEntity = restTemplate.exchange(url, HttpMethod.PUT, requestEntity, Long.class);

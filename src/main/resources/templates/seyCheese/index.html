@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ESCAPE THE ROOM</title>
+
+<link rel="icon" type="image/png" sizes="32x32" href="../images/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="../images/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../images/favicon-16x16.png">
+<link rel="manifest" href="../images/manifest.json">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="../images/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff">
+
+<link href="../css/main.css" rel="stylesheet" />
+
+<script  src="http://code.jquery.com/jquery-3.6.0.js"></script>
+
+</head>
+
+
+
+<body>
+
+<main class="wrap">
+	<h1>ESCAPE THE ROOM</h1><br><br>
+		<div class="title" style="text-align : center;">
+			<img src="../images/title2.png">
+		</div>
+		<section id="window_main">
+			<article id="face1"></article>
+			
+			<div id="play" onclick="gotoNext()">
+				<div style="text-align : center;" id="main_video"><video src="../images/video/seyangG_want_cheese.mp4" loop autoplay muted></video></div>
+			</div>
+		</section>
+		<section id="window_bag">
+			<article class="face2"></article>
+			<div id="history"><a style="font-weight:bold;" id="history1" href="http://localhost:8080/SeyCheese/html/index.html">- 세양쥐는 치즈가 먹고 싶어 ◀ </a></div>
+		</section>
+		<section id="speech">
+			<article class="face3"></article>
+			<div id="con">시작하려면 플레이 화면을 클릭하세요.</div>
+		</section>
+		<section id="community">
+			<article class="face4"><a href="#"></a></article>
+		</section>
+	</main>
+<script>
+	function gotoNext() {
+		window.location.href="http://localhost:8080/SeyCheese/html/prologue.html";
+	}
+</script>
+</body>
+</html>

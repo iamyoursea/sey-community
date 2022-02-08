@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ESCAPE THE ROOM</title>
+
+<link rel="icon" type="image/png" sizes="32x32" href="../images/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="../images/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../images/favicon-16x16.png">
+<link rel="manifest" href="../images/manifest.json">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="../images/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff">
+
+<link href="../css/main.css" rel="stylesheet" />
+
+<script  src="http://code.jquery.com/jquery-3.6.0.js"></script>
+
+<style>
+img.nextChapter{
+	display : none;
+}
+img.answer{
+display : none;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<main class="wrap">
+	<h1>ESCAPE THE ROOM</h1><br><br>
+		<div class="title" style="text-align : center;">
+			<img src="../images/title2.png">
+		</div>
+		<section id="window_main">
+			<article id="face1"></article>
+			
+			<div id="play">
+				<img class="pic" id="scene" src="../images/chapter4/1.png" ></img>
+				<img class="next" id="next" src = "../images/next.png"></img>
+				<img class="prev" id="prev" src = "../images/prev.png" hidden=true></img>
+				<a href = "http://localhost:8080/SeyCheese/html/chapter5.html">
+					<img class="nextChapter" id="nextChapter" src = "../images/next.png"></img>
+				</a>
+				<img class = "answer" id = "answer" src = "../images/answer.png" onclick = "insertAnswer()"></img>
+			</div>
+		</section>
+		<section id="window_bag">
+			<article class="face2"></article>
+				<div id="history">
+				<a id="history1" href="http://localhost:8080/SeyCheese/html/index.html">- 세양쥐는 치즈가 먹고 싶어</a>
+				<br><br>
+				<a id="history2" href="http://localhost:8080/SeyCheese/html/prologue.html">- 모험을 떠나자!</a>
+				<br><br>
+				<a id="history3" href="http://localhost:8080/SeyCheese/html/chapter1.html">- 고양이와 털실</a>
+				<br><br>
+				<a id="history4" href="http://localhost:8080/SeyCheese/html/chapter2.html">- 테이블 위로</a>
+				<br><br>
+				<a id="history5" href="http://localhost:8080/SeyCheese/html/chapter3.html">- 치즈의 행방은?!</a>
+				<br><br>
+				<a style="font-weight:bold;" id="history6" href="http://localhost:8080/SeyCheese/html/chapter4.html">- 어디선가 들리는 목소리 ◀ </a>
+				</div>
+		</section>
+		<section id="speech">
+			<article class="face3"></article>
+			<div id="con">어? 어? 낙하산을 탄 세양쥐가 이상한 곳으로 날아가 버리네요!</div>
+		</section>
+		<section id="community">
+			<article class="face4"><a href="#"></a></article>
+		</section>
+	</main>
+<script>
+
+let pic = document.querySelector(".pic");
+let con = document.getElementById("con");
+let next = document.getElementById("next");
+let prev = document.getElementById("prev");
+let nextChapter = document.getElementById("nextChapter");
+let answer = document.getElementById("answer");
+let picNo = 1;
+let i=1;
+
+document.querySelector(".next").addEventListener("click", function(idx){
+	if(idx) {
+		if(i==4) return;
+		i++;
+	}
+	pic.setAttribute("src", "../images/chapter4/"+i+".png");
+	picNo = i;
+
+	picByIndex();
+});
+
+document.querySelector(".prev").addEventListener("click", function(idx){
+	if(idx) {
+		if(i==1) return;
+		i--;
+	}
+	pic.setAttribute("src", "../images/chapter4/"+i+".png");
+	picNo = i;
+
+	picByIndex();
+});
+
+function picByIndex() {
+	if (picNo == 1) {
+		prev.hidden = true;
+		next.hidden = false;
+		answer.style.display = "none";
+		nextChapter.style.display = 'none';
+		con.innerHTML= "어? 어? 낙하산을 탄 세양쥐가 이상한 곳으로 날아가 버리네요!";
+	} else if (picNo ==2) {
+		prev.hidden = false;
+		next.hidden = false;
+		answer.style.display = "none";
+		nextChapter.style.display = 'none';
+		con.innerHTML = "고양이를 피해 급히 뛰어내리다 보니, 바람을 타고 창문을 넘어버렸어요.";
+	} else if (picNo ==3) {
+		prev.hidden = false;
+		next.hidden = false;
+		answer.style.display = "none";
+		nextChapter.style.display = 'none';
+		con.innerHTML = "어쩌죠? 창문은 너무 높아서 올라갈 수가 없겠어요... 이때, 세양쥐를 부르는 목소리가 들렸어요!";
+	}  else if (picNo == 4) {
+		prev.hidden = false;
+		next.hidden = true;
+		answer.style.display = "block";
+		nextChapter.style.display = 'none';
+		con.innerHTML = "집중해서 들으면 소리가 어디서 나는지 찾을 수 있을 것 같아요...";
+	}
+} 
+
+function insertAnswer() {
+	let input = prompt("소리는 어디에서 났을까요?\n(잘 모르겠다면 hint를 입력해보세요!)");
+	if(input=="hint"){
+		alert("쉿! 집중해서 소리의 길을 따라가봐요!")
+	} else if (input=="SQUIRREL ON A TREE" || input=="SQUIRRELONATREE" || input=="squirrel on a tree" || input=="squirrelonatree" || input=="Squirrel On A Tree" 
+			|| input=="Squirrelonatree" || input=="squirrel on a tree" || input=="SquirrelOnATree" ){
+		alert("찾았다! 나무 위에서 다람쥐가 부른 거였어요!")
+		window.location.href = "http://localhost:8080/SeyCheese/html/chapter5.html";
+	} else {
+		alert("조심! 바깥은 위험하니까 함부로 돌아다니면 큰일나요.");
+	}
+}
+</script>
+</body>
+</html>

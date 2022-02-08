@@ -1,0 +1,264 @@
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>세양쥐게임즈🐭</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap" rel="stylesheet">
+    <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"
+    />
+    <!--    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">-->
+    <link rel="stylesheet" href="https://bootswatch.com/5/morph/bootstrap.min.css">
+    <style>
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+
+        .song-title, .head-title {
+            cursor: pointer;
+        }
+
+        #table-info {
+            margin-bottom: 150px;
+            table-layout: fixed;
+            word-wrap: break-word;
+        }
+
+        #play-window {
+            position: fixed;
+            z-index: 50;
+            bottom: -5px;
+            right: 0px;
+            width: 100%;
+            background: rgba( 111, 66, 193, 0.25 );
+            backdrop-filter: blur( 20px );
+            -webkit-backdrop-filter: blur( 20px );
+            border-top: 1px solid rgba( 255, 255, 255, 0.18 );
+            border-bottom: 1px solid rgba( 255, 255, 255, 0.18 );
+        }
+
+        #audio-player {
+            margin-bottom: 15px;
+        }
+
+        #play-title {
+            overflow: hidden;
+            height: 25px;
+            animation: scroll 10s linear infinite;
+        }
+
+        .play-btn-panel {
+            margin: 0px auto;
+        }
+
+        .search-highlight {
+            background-color: #fff34d;
+            -moz-border-radius: 5px; /* FF1+ */
+            -webkit-border-radius: 5px; /* Saf3-4 */
+            border-radius: 5px; /* Opera 10.5, IE 9, Saf5, Chrome */
+            -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.7); /* FF3.5+ */
+            -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.7); /* Saf3.0+, Chrome */
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.7); /* Opera 10.5+, IE 9.0 */
+        }
+
+        .midi-title {
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+            font-weight: bold;
+        }
+
+        #div-search {
+            display: none;
+        }
+
+        .share-html {
+            cursor: pointer;
+        }
+
+        .desktop-only {
+            margin-left: 5px;
+        }
+
+        #btn-search, #btn-search-reset {
+            width: 80px;
+        }
+
+        .close {
+            border: none;
+            background: none;
+            color: white;
+            font-weight: bolder;
+            text-shadow: 0 0 1px rgb(255 255 255 / 60%), 0 0 3px rgb(255 255 255 / 50%), 0 0 0.5rem rgb(255 255 255 / 30%), 0 0 2rem rgb(255 255 255 / 20%);
+        }
+
+        /* PC */
+        @media (min-width: 1025px) {
+            #audio.player {
+                width: 100%
+            }
+        }
+
+
+        /* 모바일 */
+        @media (min-width: 320px) and (max-width: 480px) {
+            #audio.player {
+                min-width: 150px;
+                width: 225px;
+            }
+
+            #table-info {
+                font-size: 0.8em;
+            }
+
+            .midi-logo-pc {
+                display: none;
+            }
+
+            #search {
+                font-size: 16px;
+            }
+
+            .desktop-only {
+                display: none;
+            }
+        }
+
+        @media (min-width: 1199px) {
+            .midi-logo-mobile {
+                display: none;
+            }
+        }
+
+        @media (max-width: 1200px) {
+            .midi-logo-pc {
+                display: none;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+<div class="container">
+
+    <div class="row mt-3 mb-2">
+        <div class="col-1 midi-logo-pc mx-1 mb-1">
+            <img src="https://dummyimage.com/600x600/000/fff" th:src="@{/img/midi-icon.png}" style="height: 80px;">
+        </div>
+        <div class="col-auto px-1">
+            <h2 class="midi-title"><img src="https://dummyimage.com/600x600/000/fff" th:src="@{/img/midi-icon.png}" style="height: 60px;" class="mx-1 midi-logo-mobile">미디 플레이어 (v.0.1)</h2>
+            <a href="#" class="btn btn-info btn-sm" data-placement="bottom" id="btn-help"
+               data-toggle="modal" data-target="#notice-modal"
+               title=""><i class="fas fa-question-circle"></i><span class="desktop-only">도움말</span></a>
+            <a th:href="@{/midi/upload}" href="#" class="btn btn-primary btn-sm"><i class="fas fa-upload"></i><span class="desktop-only">업로드</span></a>
+            <a th:href="@{/midi/update}" href="#" class="btn btn-secondary btn-sm"><i class="fas fa-edit"></i><span class="desktop-only">업데이트</span></a>
+            <a href="#" id="btn-toggle-search" class="btn btn-secondary btn-sm" data-show-msg="검색창 표시" data-hide-msg="검색창 숨김"><i class="fas fa-search"></i><span class="desktop-only">검색창 표시</span></a>
+            <a href="#" id="btn-shuffle" class="btn btn-dark btn-sm"><i class="fas fa-random"></i><span class="desktop-only">목록 셔플</span></a>
+        </div>
+    </div>
+    <div id="div-search" class="form-inline form-group border rounded p-2 align-middle">
+        <!--                <label for="search" class="align-middle">검색</label>-->
+        <input type="text" id="search" class="form-control mx-sm-3 form-control-sm align-middle">
+        <button type="submit" id="btn-search" class="btn btn-primary btn-sm align-middle">검색</button>
+        <button type="submit" id="btn-search-reset" class="btn btn-secondary btn-sm align-middle mx-1">초기화</button>
+    </div>
+    <table class="table table-hover" id="table-info">
+        <thead>
+        <tr class="head-title table-dark">
+            <th scope="col" style="width: 60px">ID<i id="order-icon" class="fas fa-arrow-up" style="margin-left: 5px; color: dimgray;"></i>
+            </th>
+            <th scope="col" >제목</th>
+            <th scope="col" style="width: 20%" class="text-center">퍼가기</th>
+        </tr>
+        </thead>
+        <tbody id="table-info-tbody">
+        <tr th:if="${false}">
+            <th scope="col">1</th>
+            <th scope="col"><span class="th-title">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </span></th>
+            <th scope="col" class="text-center share-html">퍼가기</th>
+        </tr><tr th:if="${false}">
+            <th scope="col">2</th>
+            <th scope="col">한글 제목</th>
+            <th scope="col">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </th>
+        </tr><tr th:if="${false}">
+            <th scope="col">3333</th>
+            <th scope="col" class=".head-title">제목</th>
+            <th scope="col">로더</th>
+        </tr>
+        </tbody>
+    </table>
+
+    <div id="play-window" class="card mb-1">
+        <div class="card-body">
+            <p class="card-title" id="play-title">미디플레이어를 <span class="text-info"><strong>[홈 화면]</strong></span>에 등록해 사용해보세요.</p>
+        </div>
+        <div class="play-btn-panel">
+            <audio id="audio-player" controls preload="auto"></audio>
+        </div>
+    </div>
+
+    <div id="notice-modal" class="modal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">사용법 및 공지사항</h5>
+                    <button type="button" class="close" data-dismiss="moda" aria-label="Close">
+                        <span aria-hidden="true" data-dismiss="modal">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <ul>
+                        <li>노래의 제목을 클릭하면 재생됩니다. </li>
+                        <li>목록의 헤더를 클릭하면 오름차순/내림차순 정렬이 전환됩니다.</li>
+                        <li>[검색창 표시/숨김] 버튼을 누르면 검색 기능 창이 토글됩니다.</li>
+                    </ul>
+                    <h4>공지사항</h4>
+                    <ul>
+                        <li>[퍼가기] 기능을 신설했습니다. HTML 사용 가능한 게시판에 붙여넣기 해서 미디 파일을 다른 사람들과 공유하세요.</li>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="html-embed-modal" class="modal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">HTML 퍼가기</h5>
+                    <button type="button" class="close" data-dismiss="moda" aria-label="Close">
+                        <span aria-hidden="true" data-dismiss="modal">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>아래 코드를 복사 후 HTML iframe 태그를 지원하는 블로그/게시판 등에 붙여넣기하세요.</p>
+                    <textarea readonly class="form-control" id="html-embed-code" rows="5">
+                        </textarea>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="btn-copy-html" class="btn btn-primary">&lt;&gt; 클립보드에 복사</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script
+        src="https://code.jquery.com/jquery-3.6.0.slim.min.js"
+        integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI="
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+</body>
+
+</html>
