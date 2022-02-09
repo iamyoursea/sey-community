@@ -224,14 +224,6 @@ public class IndexController {
         return "posts-view";
     }
 
-    @GetMapping("/games")
-    public String game(Model model, @LoginUser SessionUser loginUser) {
-        if(loginUser!=null){
-            model.addAttribute("loginUser", loginUser);
-        }
-        return ("/games/sey-games");
-    }
-
     @GetMapping("/search")
     public String search(Model model, @LoginUser SessionUser user, String keyword) {
 
