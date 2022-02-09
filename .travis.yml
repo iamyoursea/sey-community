@@ -17,8 +17,26 @@ script: "./gradlew clean build -x test"
 before_install:
   - chmod +x gradlew
 
+before_deploy:
+  - zip -r sey-community *
+  - mkdir -p deploy
+  - mv sey-community.zip deploy/sey-community.zip
+
+deploy:
+  - provider: s3
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key: $AWS_SECRET_KEY
+    bucket: sey-community
+    region: ap-northeast-w
+    skip_cleanup: true
+    acl: private
+    local_dir: deploy
+    wait-until-deployed: true
+
 # Alert on Mail when CI executed
 notifications:
   email:
     recipients:
       - iamyoursea0@gmail.com
+
+
