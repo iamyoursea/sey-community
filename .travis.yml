@@ -1,12 +1,12 @@
 language: java
 jdk:
-  - oraclejdk11
+  - openjdk8
 
 branches:
   only:
     - master
 
-# Travis CI Server Home
+# Travis CI 서버의 Home
 cache:
   directories:
     - '$HOME/.m2/repository'
@@ -14,39 +14,44 @@ cache:
 
 script: "./gradlew clean build -x test"
 
-before_install:
-  - chmod +x gradlew
+# CI 실행 완료 시 메일 전송
+notifications:
+  email:
+    recipients:
+      - le__em@naver.com
+
 
 before_deploy:
-  - zip -r sey-community *
-  - mkdir -p deploy
-  - mv sey-community.zip deploy/sey-community.zip
+  #  - zip -r awsboard *
+  #  - mkdir -p deploy
+  #  - mv awsboard.zip deploy/awsboard.zip
+  - mkdir -p before-deploy
+  - cp scripts/*.sh before-deploy/
+  - cp appspec.yml before-deploy/
+  - cp build/libs/*.jar before-deploy/
+  - cd before-deploy && zip -r before-deploy * # before-deploy로 이동 후 전체 압축
+  - cd ../ && mkdir -p deploy
+  - mv before-deploy/before-deploy.zip deploy/sey-community.zip
 
 deploy:
   - provider: s3
     access_key_id: $AWS_ACCESS_KEY
     secret_access_key: $AWS_SECRET_KEY
     bucket: sey-community
-    region: ap-northeast-w
+    region: ap-northeast-2
     skip_cleanup: true
     acl: private
     local_dir: deploy
     wait-until-deployed: true
+
   - provider: codedeploy
     access_key_id: $AWS_ACCESS_KEY
-    secret_access_key: $SECRET_ACCESS_KEY
+    secret_access_key: $AWS_SECRET_KEY
     bucket: sey-community
     key: sey-community.zip
     bundle_type: zip
-    application: sey-community
+    application: awsboard-1 # 웹 콘솔에서 등록한 코드디플로이 애플리케이션
     deployment_group: sey-community-group
     region: ap-northeast-2
     wait-until-deployed: true
-
-# Alert on Mail when CI executed
-notifications:
-  email:
-    recipients:
-      - iamyoursea0@gmail.com
-
 
