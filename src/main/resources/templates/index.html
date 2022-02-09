@@ -66,14 +66,14 @@
     </div>
 
     <div class="row">
-        <div th:if="${isAllowWrite}" class="col-md-2">
-            <a th:href="${'/' + requestFrom + '/save'}" role="button" class="btn btn-primary float-right">글 등록</a>
-        </div>
         <div class="col-md-4 .offset-md-4">
             <form class="d-flex">
                 <input class="form-control mr-sm-2" type="text" placeholder="Search" id="search-keyword" name="keyword">
                 <button class="btn btn-outline-light" type="submit" id="btn-search">Search</button>
             </form>
+        </div>
+        <div th:if="${isAllowWrite}" class="col-md-2 .offset-md-4">
+            <a th:href="${'/' + requestFrom + '/save'}" role="button" class="btn btn-primary float-right">글 등록</a>
         </div>
     </div>
 

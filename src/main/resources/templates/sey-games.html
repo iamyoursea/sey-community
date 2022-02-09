@@ -13,8 +13,32 @@
         <div class="col-md-6 my-4">
             <h1 th:text="${boardTitle}">세양쥐게임즈🐭</h1>
         </div>
+        <br><br>
+        <h3>주식회사 세양쥐게임즈 제작 게임 목록</h3>
     </div>
 
+    <div class="row">
+        <div class="col-md-12">
+            <div class="col-md-2">
+                <table class="thead-strong table table-secondary">
+                    <tr>
+                        <td><a th:href="${'/'+requestFrom+'/seyCheese/'+'index'}">
+                            <img style="width:50px; height:50px;" src="/images/seyCheese_thumb.jpg">
+                        </a></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="col-md-2 .offset-md-1">
+
+            </div>
+            <div class="col-md-2 .offset-md-1">
+
+            </div>
+            <div class="col-md-2 .offset-md-1">
+
+            </div>
+        </div>
+    </div>
     <h1></h1>
     <div th:replace="fragments/common :: footer">-- thymeleaf footer will be inserted here. --</div>
 </div>
