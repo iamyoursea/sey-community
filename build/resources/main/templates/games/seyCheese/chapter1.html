@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ESCAPE THE ROOM</title>
+
+<link rel="icon" type="image/png" sizes="32x32" href="/static/images/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="/static/images/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/static/images/favicon-16x16.png">
+<link rel="manifest" href="/static/images/manifest.json">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="/static/images/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff">
+
+<link href="../../css/main.css" rel="stylesheet" />
+
+<script  src="http://code.jquery.com/jquery-3.6.0.js"></script>
+
+<style>
+img.nextChapter{
+	display : none;
+}
+img.answer{
+display : none;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<main class="wrap">
+	<h1>ESCAPE THE ROOM</h1><br>
+		<div class="title" style="text-align : center;">
+			<img src="/static/images/title2.png">
+		</div>
+		<section id="window_main">
+			<article id="face1"></article>
+			
+			<div id="play" style="text-align: center">
+				<div style="text-align: center"><img class="pic" id="scene" src="/static/images/chapter1/1.png" alt="chapter1"/></div>
+				<img class="next" id="next" src = "/static/images/next.png" alt="next"/>
+				<img class="prev" id="prev" src = "/static/images/prev.png" hidden=true alt="prev"/>
+				<a href = "http://localhost:8800/seyCheese/chapter2.html">
+					<img class="nextChapter" id="nextChapter" src = "/static/images/next.png"/>
+				</a>
+				<img class = "answer" id = "answer" src = "/static/images/answer.png" onclick = "insertAnswer()"/>
+			</div>
+		</section>
+		<section id="window_bag">
+			<article class="face2"></article>
+				<div id="history">
+				<a id="history1" href="http://localhost:8800/seyCheese/index.html">- 세양쥐는 치즈가 먹고 싶어</a>
+				<br><br>
+				<a id="history2" href="http://localhost:8080/SeyCheese/html/prologue.html">- 모험을 떠나자!</a>
+				<br><br>
+				<a style="font-weight:bold;" id="history3" href="http://localhost:8080/SeyCheese/html/chapter1.html">- 고양이와 털실 ◀</a>
+				<br><br>
+				<a id="history4" href="http://localhost:8080/SeyCheese/html/chapter2.html">- 테이블 위로</a>
+				<br><br>
+				<a id="history5" href="http://localhost:8080/SeyCheese/html/chapter3.html">- 치즈의 행방은?!</a>
+				<br><br>
+				<a id="history6" href="http://localhost:8080/SeyCheese/html/chapter4.html">- 어디선가 들리는 목소리 </a>
+				</div>
+		</section>
+		<section id="speech">
+			<article class="face3"></article>
+			<div id="con">음... 어디부터 가야 할까요? 테이블에 아직 치즈가 있을지도 몰라요! 확인하러 가야겠어요.</div>
+		</section>
+		<section id="community">
+			<article class="face4"><a href="#"></a></article>
+		</section>
+	</main>
+<script>
+
+let pic = document.querySelector(".pic");
+let con = document.getElementById("con");
+let next = document.getElementById("next");
+let prev = document.getElementById("prev");
+let nextChapter = document.getElementById("nextChapter");
+let answer = document.getElementById("answer");
+let picNo = 1;
+let i=1;
+
+document.querySelector(".next").addEventListener("click", function(idx){
+	if(idx) {
+		if(i==3) return;
+		i++;
+	}
+	pic.setAttribute("src", "../images/chapter1/"+i+".png");
+	picNo = i;
+
+	picByIndex();
+});
+
+document.querySelector(".prev").addEventListener("click", function(idx){
+	if(idx) {
+		if(i==1) return;
+		i--;
+	}
+	pic.setAttribute("src", "../images/chapter1/"+i+".png");
+	picNo = i;
+
+	picByIndex();
+});
+
+function picByIndex() {
+	if (picNo == 1) {
+		prev.hidden = true;
+		next.hidden = false;
+		answer.style.display = "none";
+		nextChapter.style.display = 'none';
+		con.innerHTML= "음... 어디부터 가야 할까요? 테이블에 아직 치즈가 있을지도 몰라요! 확인하러 가야겠어요.";
+	} else if (picNo ==2) {
+		prev.hidden = false;
+		next.hidden = false;
+		answer.style.display = "none";
+		nextChapter.style.display = 'none';
+		con.innerHTML = "테이블 밑에서 털실공을 갖고 놀던 블리가 자고있어요. 털실을 잘못 건드리면 깰지도 몰라요!";
+	} else if (picNo == 3) {
+		prev.hidden = false;
+		next.hidden = true;
+		answer.style.display = "block";
+		nextChapter.style.display = 'none';
+		con.innerHTML = "블리는 분홍 털실만 안고 자고있어요. 어떤 칸만 밟고 가야 블리를 깨우지 않고 목표지점 (X) 에 갈 수 있을까요?";
+	}
+}
+
+function insertAnswer() {
+	let input = prompt("정답은 무엇일까요?\n(대문자로 입력하세요!)\n(hint를 입력하면 힌트를 드려요!)");
+	if(input=="hint"){
+		alert("세양쥐는 블리가 안고있지 않은 털실은 밟고 지나가도 될 것 같다고 생각했어요.")
+	} else if (input=="NONEEDTOBEAFRAID"||input=="NO NEED TO BE AFRAID"){
+		alert("다행이다~! 무사히 지나왔어요!")
+		window.location.href = "http://localhost:8080/SeyCheese/html/chapter2.html";
+	} else {
+		alert("앗! 블리가 깰 뻔 했어요! 다시 조심히 지나가요.");
+	}
+}
+
+</script>
+</body>
+</html>

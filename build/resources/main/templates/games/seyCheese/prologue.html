@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ESCAPE THE ROOM</title>
+
+<link rel="icon" type="image/png" sizes="32x32" href="../images/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="../images/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../images/favicon-16x16.png">
+<link rel="manifest" href="../images/manifest.json">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="../images/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff">
+
+<link href="../../css/main.css" rel="stylesheet" />
+
+<script  src="http://code.jquery.com/jquery-3.6.0.js"></script>
+
+<style>
+img.start{
+	display : none;
+}
+</style>
+</head>
+
+
+
+<body>
+
+<main class="wrap">
+	<h1>ESCAPE THE ROOM</h1><br><br>
+		<div class="title" style="text-align : center;">
+			<img src="../images/title2.png">
+		</div>
+		<section id="window_main">
+			<article id="face1"></article>
+			
+			<div id="play">
+				<img class="pic" id="scene" src="../images/prologue/scene1.gif" ></img>
+				<img class="next" id="next" src = "../images/next.png"></img>
+				<img class="prev" id="prev" src = "../images/prev.png" hidden=true></img>
+				<a href = "http://localhost:8080/SeyCheese/html/chapter1.html">
+					<img class="start" id="start" src = "../images/start.png"></img>
+				</a>
+			</div>
+		</section>
+		<section id="window_bag">
+			<article class="face2"></article>
+			<div id="history">
+				<a id="history1" href="http://localhost:8080/SeyCheese/html/index.html">- 세양쥐는 치즈가 먹고 싶어</a>
+				<br><br>
+				<a style="font-weight:bold;" id="history2" href="http://localhost:8080/SeyCheese/html/prologue.html">- 모험을 떠나자! ◀ </a>
+				<br><br>
+				<a id="history3" href="http://localhost:8080/SeyCheese/html/chapter1.html">- 고양이와 털실</a>
+				<br><br>
+				<a id="history4" href="http://localhost:8080/SeyCheese/html/chapter2.html">- 테이블 위로</a>
+				<br><br>
+				<a id="history5" href="http://localhost:8080/SeyCheese/html/chapter3.html">- 치즈의 행방은?!</a>
+				<br><br>
+				<a id="history6" href="http://localhost:8080/SeyCheese/html/chapter4.html">- 어디선가 들리는 목소리</a>
+			</div>
+		</section>
+		<section id="speech">
+			<article class="face3"></article>
+			<div id="con">어느날 이상한 냄새를 맡은 세양쥐는 쥐구멍 밖을 내다보았어요.</div>
+		</section>
+		<section id="community">
+			<article class="face4"><a href="#"></a></article>
+		</section>
+	</main>
+<script>
+
+let pic = document.querySelector(".pic");
+let con = document.getElementById("con");
+let next = document.getElementById("next");
+let prev = document.getElementById("prev");
+let start = document.getElementById("start");
+let picNo = 1;
+let i=1;
+
+document.querySelector(".next").addEventListener("click", function(idx){
+	if(idx) {
+		if(i==6) return;
+		i++;
+	}
+	pic.setAttribute("src", "../images/prologue/scene"+i+".gif");
+	picNo = i;
+
+	picByIndex();
+});
+
+document.querySelector(".prev").addEventListener("click", function(idx){
+	if(idx) {
+		if(i==1) return;
+		i--;
+	}
+	pic.setAttribute("src", "../images/prologue/scene"+i+".gif");
+	picNo = i;
+
+	picByIndex();
+});
+
+function picByIndex() {
+	if (picNo == 1) {
+		prev.hidden = true;
+		next.hidden = false;
+		start.style.display = 'none';
+		con.innerHTML= "어느날 이상한 냄새를 맡은 세양쥐는 쥐구멍 밖을 내다보았어요.";
+	} else if (picNo ==2) {
+		prev.hidden = false;
+		next.hidden = false;
+		start.style.display = 'none';
+		con.innerHTML = "쥐구멍 밖에서는 사람들이 한창 신나는 축제 중이었어요.";
+	} else if (picNo == 3) {
+		prev.hidden = false;
+		next.hidden = false;
+		start.style.display = 'none';
+		con.innerHTML = "세양쥐는 치즈를 발견하고, 멀리서부터 강렬하게 끌리는 냄새에 침을 삼겼어요!";
+	} else if (picNo == 4) {
+		prev.hidden = false;
+		next.hidden = false;
+		start.style.display = 'none';
+		con.innerHTML = "그 다음부터, 세양쥐는 치즈 생각을 떨칠 수가 없어서 괴로웠어요.";
+	} else if (picNo == 5) {
+		prev.hidden = false;
+		next.hidden = false;
+		start.style.display = 'none';
+		con.innerHTML = "참지 못한 세양쥐는 치즈를 맛보기 위해 쥐구멍을 나서기로 결심했어요.";
+	} else if (picNo == 6) {
+		prev.hidden = false;
+		next.hidden = true;
+		start.style.display = 'block';
+		con.innerHTML = "세양쥐가 무사히 치즈를 먹어볼 수 있을까요? 세양쥐의 모험을 도와주세요!"
+		
+	}
+}
+
+</script>;
+</body>
+</html>

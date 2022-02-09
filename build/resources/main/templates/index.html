@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/common :: html-head">
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://bootswatch.com/5/morph/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <div th:replace="fragments/common :: header(${requestFrom})">-- thymeleaf header will be inserted here. --</div>
+
+    <div class="row">
+        <div class="col-md-6 my-4">
+            <h1 th:text="${boardTitle}">자유게시판</h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <!-- 목록 출력 영역 -->
+            <table class="table table-horizontal table-bordered">
+                <thead class="thead-strong table table-secondary">
+                <tr>
+                    <th>번호</th>
+                    <th>제목</th>
+                    <th>작성자</th>
+                    <th>수정일</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="post: ${posts}">
+                    <td th:text="${post.id}">0</td>
+                    <td><a th:text="${post.title}" th:href="${'/' + requestFrom + '/view/'
+                    + post.id + '?page=' + pageInfo.currentPageNum}">title</a></td>
+                    <td th:text="${post.author}">author</td>
+                    <td th:text="${#strings.arraySplit(post.modifiedDate,'T')[0]}"
+                        th:title="${#strings.arraySplit(post.modifiedDate,'T')[0]}
+                                + ' ' +${#strings.arraySplit(post.modifiedDate,'T')[1]}">2000</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div th:text="${pageList}">
+
+    </div>
+
+    <div class="row" th:if="${pageInfo ne null}">
+        <div class="col-12">
+            <ul class="pagination pagination justify-content-center">
+                <li class="page-item" th:classappend="${!pageInfo.isPrevExist} ? disabled">
+                    <a class="page-link" href="#" th:href="${pageInfo.isPrevExist ? '/?page=' + (pageInfo?.pageList[0] - 1) : ''}">&laquo;</a>
+                </li>
+                <li th:each="num: ${pageInfo.pageList}" class="page-item" th:classappend="${pageInfo.currentPageNum eq num} ? active">
+                    <a class="page-link" href="#" th:href="${'/?page=' + num}" th:text="${num}"></a>
+                </li>
+
+                <li class="page-item" th:classappend="${!pageInfo.isNextExist} ? disabled">
+                    <a class="page-link" href="#" th:href="${pageInfo.isNextExist ? '/?page=' + (pageInfo?.pageList[0] + 5) : ''}">&raquo;</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="row">
+        <div th:if="${isAllowWrite}" class="col-md-2">
+            <a th:href="${'/' + requestFrom + '/save'}" role="button" class="btn btn-primary float-right">글 등록</a>
+        </div>
+        <div></div>
+        <div></div>
+        <form class="d-flex">
+            <input class="form-control mr-sm-2" type="text" placeholder="Search" id="search-keyword" name="keyword">
+            <button class="btn btn-outline-light" type="submit" id="btn-search">Search</button>
+        </form>
+    </div>
+
+    <div th:replace="fragments/common :: footer">-- thymeleaf footer will be inserted here. --</div>
+</div>
+
+</body>
+</html>
