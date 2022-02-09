@@ -68,10 +68,11 @@
         <div th:if="${isAllowWrite}" class="col-md-2">
             <a th:href="${'/' + requestFrom + '/save'}" role="button" class="btn btn-primary float-right">글 등록</a>
         </div>
-        <div>
-            <input class="form-control mr-sm-2" type="text" placeholder="Search" id="search-keyword" name="keyword">
-            <button class="btn btn-secondary my-2 my-sm-0" type="submit" id="btn-search">Search</button>
-        </div>
+        <br>
+        <form class="d-flex">
+            <input th:width="400px" class="form-control mr-sm-2" type="text" placeholder="Search" id="search-keyword" name="keyword">
+            <button class="btn btn-outline-light" type="submit" id="btn-search">Search</button>
+        </form>
     </div>
 
     <div th:replace="fragments/common :: footer">-- thymeleaf footer will be inserted here. --</div>
