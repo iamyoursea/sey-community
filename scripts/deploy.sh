@@ -1,7 +1,7 @@
 #!/bin/bash
 
 REPOSITORY=/home/ec2-user/app/step2
-PROJECT_NAME=awsboard
+PROJECT_NAME=sey-community
 
 echo "> 빌드 파일 복사"
 cp $REPOSITORY/zip/*.jar $REPOSITORY/
