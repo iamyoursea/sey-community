@@ -25,9 +25,9 @@ notifications:
 
 
 before_deploy:
-  #  - zip -r awsboard *
+  #  - zip -r sey-community *
   #  - mkdir -p deploy
-  #  - mv awsboard.zip deploy/awsboard.zip
+  #  - mv sey-community.zip deploy/sey-community.zip
   - mkdir -p before-deploy
   - cp scripts/*.sh before-deploy/
   - cp appspec.yml before-deploy/
