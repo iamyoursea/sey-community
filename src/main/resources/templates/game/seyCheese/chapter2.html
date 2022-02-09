@@ -12,7 +12,7 @@
 <meta name="msapplication-TileImage" content="../images/ms-icon-144x144.png">
 <meta name="theme-color" content="#ffffff">
 
-<link href="../css/main.css" rel="stylesheet" />
+<link href="../../css/main.css" rel="stylesheet" />
 
 <script  src="http://code.jquery.com/jquery-3.6.0.js"></script>
 
@@ -39,10 +39,10 @@ display : none;
 			<article id="face1"></article>
 			
 			<div id="play">
-				<img class="pic" id="scene" src="../images/chapter3/1.png" ></img>
+				<img class="pic" id="scene" src="../images/chapter2/1.png" ></img>
 				<img class="next" id="next" src = "../images/next.png"></img>
 				<img class="prev" id="prev" src = "../images/prev.png" hidden=true></img>
-				<a href = "http://localhost:8080/SeyCheese/html/chapter4.html">
+				<a href = "http://localhost:8080/SeyCheese/html/chapter3.html">
 					<img class="nextChapter" id="nextChapter" src = "../images/next.png"></img>
 				</a>
 				<img class = "answer" id = "answer" src = "../images/answer.png" onclick = "insertAnswer()"></img>
@@ -57,16 +57,16 @@ display : none;
 				<br><br>
 				<a id="history3" href="http://localhost:8080/SeyCheese/html/chapter1.html">- 고양이와 털실</a>
 				<br><br>
-				<a id="history4" href="http://localhost:8080/SeyCheese/html/chapter2.html">- 테이블 위로</a>
+				<a style="font-weight:bold;" id="history4" href="http://localhost:8080/SeyCheese/html/chapter2.html">- 테이블 위로 ◀</a>
 				<br><br>
-				<a style="font-weight:bold;" id="history5" href="http://localhost:8080/SeyCheese/html/chapter3.html">- 치즈의 행방은?! ◀ </a>
+				<a id="history5" href="http://localhost:8080/SeyCheese/html/chapter3.html">- 치즈의 행방은?!</a>
 				<br><br>
-				<a id="history6" href="http://localhost:8080/SeyCheese/html/chapter4.html">- 어디선가 들리는 목소리 </a>
+				<a id="history6" href="http://localhost:8080/SeyCheese/html/chapter4.html">- 어디선가 들리는 목소리</a>
 				</div>
 		</section>
 		<section id="speech">
 			<article class="face3"></article>
-			<div id="con">가까스로 테이블 위까지 올라왔어요! 그런데... 테이블 위에는 고작 냅킨 한 장 뿐?!</div>
+			<div id="con">세양쥐는 테이블 다리를 타고 올라가려 했지만, 너무 미끄러웠어요.</div>
 		</section>
 		<section id="community">
 			<article class="face4"><a href="#"></a></article>
@@ -88,7 +88,7 @@ document.querySelector(".next").addEventListener("click", function(idx){
 		if(i==3) return;
 		i++;
 	}
-	pic.setAttribute("src", "../images/chapter3/"+i+".png");
+	pic.setAttribute("src", "../images/chapter2/"+i+".png");
 	picNo = i;
 
 	picByIndex();
@@ -99,7 +99,7 @@ document.querySelector(".prev").addEventListener("click", function(idx){
 		if(i==1) return;
 		i--;
 	}
-	pic.setAttribute("src", "../images/chapter3/"+i+".png");
+	pic.setAttribute("src", "../images/chapter2/"+i+".png");
 	picNo = i;
 
 	picByIndex();
@@ -111,31 +111,31 @@ function picByIndex() {
 		next.hidden = false;
 		answer.style.display = "none";
 		nextChapter.style.display = 'none';
-		con.innerHTML= "가까스로 테이블 위까지 올라왔어요! 그런데... 테이블 위에는 고작 냅킨 한 장 뿐?!";
+		con.innerHTML= "세양쥐는 테이블 다리를 타고 올라가려 했지만, 너무 미끄러웠어요.";
 	} else if (picNo ==2) {
 		prev.hidden = false;
 		next.hidden = false;
 		answer.style.display = "none";
 		nextChapter.style.display = 'none';
-		con.innerHTML = "설상가상으로, 잠자던 고양이 블리가 일어났어요! 너무너무 무서워요. 어서 도망가야겠어요!";
+		con.innerHTML = "주위를 둘러보던 세양쥐는 블록 장난감을 발견했어요!";
 	} else if (picNo ==3) {
 		prev.hidden = false;
 		next.hidden = true;
 		answer.style.display = "block";
 		nextChapter.style.display = 'none';
-		con.innerHTML = "세양쥐는 좋은 생각이 떠올랐어요. 가방에 있는 실과 냅킨을 이용하면 될 것 같아요!";
+		con.innerHTML = "이 블록을 잘 조립하면 타고 위로 올라갈 수 있을 것 같아요.";
 	}
 }
 
 function insertAnswer() {
 	let input = prompt("정답은 무엇일까요?\n(잘 모르겠다면 hint를 입력해보세요!)");
 	if(input=="hint"){
-		alert("각각 바느질의 마지막 한 땀을 채워보세요! 정답은 네 자리의 숫자입니다. ")
-	} else if (input=="9243"){
-		alert("세양쥐는 냅킨을 바느질해서 낙하산을 만들었습니다!")
-		window.location.href = "http://localhost:8080/SeyCheese/html/chapter4.html";
+		alert("블럭의 테두리를 보니... 어? 글자가 보이는 것 같아요!")
+	} else if (input=="LADDER"||input=="ladder"){
+		alert("오예! 사다리가 만들어졌어요. 블럭을 타고 올라갈 수 있겠어요!")
+		window.location.href = "http://localhost:8080/SeyCheese/html/chapter3.html";
 	} else {
-		alert("냅킨은 단 한장 뿐! 아껴 써야겠어요~");
+		alert("조심해요! 블럭을 잘못 밟고 떨어졌다간 블리의 사냥감이 될지도 몰라요!");
 	}
 }
 </script>

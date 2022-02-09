@@ -224,6 +224,14 @@ public class IndexController {
         return "posts-view";
     }
 
+    @GetMapping("/game")
+    public String game(Model model, @LoginUser SessionUser loginUser) {
+        if(loginUser!=null){
+            model.addAttribute("loginUser", loginUser);
+        }
+        return ("sey-games");
+    }
+
     @GetMapping("/search")
     public String search(Model model, @LoginUser SessionUser user, String keyword) {
 

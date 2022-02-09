@@ -12,18 +12,21 @@
 <meta name="msapplication-TileImage" content="../images/ms-icon-144x144.png">
 <meta name="theme-color" content="#ffffff">
 
-<link href="../css/main.css" rel="stylesheet" />
+<link href="../../css/main.css" rel="stylesheet" />
 
 <script  src="http://code.jquery.com/jquery-3.6.0.js"></script>
 
 <style>
-img.start{
+img.nextChapter{
 	display : none;
 }
+img.answer{
+display : none;
+}
+
 </style>
+
 </head>
-
-
 
 <body>
 
@@ -36,33 +39,34 @@ img.start{
 			<article id="face1"></article>
 			
 			<div id="play">
-				<img class="pic" id="scene" src="../images/prologue/scene1.gif" ></img>
+				<img class="pic" id="scene" src="../images/chapter3/1.png" ></img>
 				<img class="next" id="next" src = "../images/next.png"></img>
 				<img class="prev" id="prev" src = "../images/prev.png" hidden=true></img>
-				<a href = "http://localhost:8080/SeyCheese/html/chapter1.html">
-					<img class="start" id="start" src = "../images/start.png"></img>
+				<a href = "http://localhost:8080/SeyCheese/html/chapter4.html">
+					<img class="nextChapter" id="nextChapter" src = "../images/next.png"></img>
 				</a>
+				<img class = "answer" id = "answer" src = "../images/answer.png" onclick = "insertAnswer()"></img>
 			</div>
 		</section>
 		<section id="window_bag">
 			<article class="face2"></article>
-			<div id="history">
+				<div id="history">
 				<a id="history1" href="http://localhost:8080/SeyCheese/html/index.html">- 세양쥐는 치즈가 먹고 싶어</a>
 				<br><br>
-				<a style="font-weight:bold;" id="history2" href="http://localhost:8080/SeyCheese/html/prologue.html">- 모험을 떠나자! ◀ </a>
+				<a id="history2" href="http://localhost:8080/SeyCheese/html/prologue.html">- 모험을 떠나자!</a>
 				<br><br>
 				<a id="history3" href="http://localhost:8080/SeyCheese/html/chapter1.html">- 고양이와 털실</a>
 				<br><br>
 				<a id="history4" href="http://localhost:8080/SeyCheese/html/chapter2.html">- 테이블 위로</a>
 				<br><br>
-				<a id="history5" href="http://localhost:8080/SeyCheese/html/chapter3.html">- 치즈의 행방은?!</a>
+				<a style="font-weight:bold;" id="history5" href="http://localhost:8080/SeyCheese/html/chapter3.html">- 치즈의 행방은?! ◀ </a>
 				<br><br>
-				<a id="history6" href="http://localhost:8080/SeyCheese/html/chapter4.html">- 어디선가 들리는 목소리</a>
-			</div>
+				<a id="history6" href="http://localhost:8080/SeyCheese/html/chapter4.html">- 어디선가 들리는 목소리 </a>
+				</div>
 		</section>
 		<section id="speech">
 			<article class="face3"></article>
-			<div id="con">어느날 이상한 냄새를 맡은 세양쥐는 쥐구멍 밖을 내다보았어요.</div>
+			<div id="con">가까스로 테이블 위까지 올라왔어요! 그런데... 테이블 위에는 고작 냅킨 한 장 뿐?!</div>
 		</section>
 		<section id="community">
 			<article class="face4"><a href="#"></a></article>
@@ -74,16 +78,17 @@ let pic = document.querySelector(".pic");
 let con = document.getElementById("con");
 let next = document.getElementById("next");
 let prev = document.getElementById("prev");
-let start = document.getElementById("start");
+let nextChapter = document.getElementById("nextChapter");
+let answer = document.getElementById("answer");
 let picNo = 1;
 let i=1;
 
 document.querySelector(".next").addEventListener("click", function(idx){
 	if(idx) {
-		if(i==6) return;
+		if(i==3) return;
 		i++;
 	}
-	pic.setAttribute("src", "../images/prologue/scene"+i+".gif");
+	pic.setAttribute("src", "../images/chapter3/"+i+".png");
 	picNo = i;
 
 	picByIndex();
@@ -94,7 +99,7 @@ document.querySelector(".prev").addEventListener("click", function(idx){
 		if(i==1) return;
 		i--;
 	}
-	pic.setAttribute("src", "../images/prologue/scene"+i+".gif");
+	pic.setAttribute("src", "../images/chapter3/"+i+".png");
 	picNo = i;
 
 	picByIndex();
@@ -104,37 +109,35 @@ function picByIndex() {
 	if (picNo == 1) {
 		prev.hidden = true;
 		next.hidden = false;
-		start.style.display = 'none';
-		con.innerHTML= "어느날 이상한 냄새를 맡은 세양쥐는 쥐구멍 밖을 내다보았어요.";
+		answer.style.display = "none";
+		nextChapter.style.display = 'none';
+		con.innerHTML= "가까스로 테이블 위까지 올라왔어요! 그런데... 테이블 위에는 고작 냅킨 한 장 뿐?!";
 	} else if (picNo ==2) {
 		prev.hidden = false;
 		next.hidden = false;
-		start.style.display = 'none';
-		con.innerHTML = "쥐구멍 밖에서는 사람들이 한창 신나는 축제 중이었어요.";
-	} else if (picNo == 3) {
-		prev.hidden = false;
-		next.hidden = false;
-		start.style.display = 'none';
-		con.innerHTML = "세양쥐는 치즈를 발견하고, 멀리서부터 강렬하게 끌리는 냄새에 침을 삼겼어요!";
-	} else if (picNo == 4) {
-		prev.hidden = false;
-		next.hidden = false;
-		start.style.display = 'none';
-		con.innerHTML = "그 다음부터, 세양쥐는 치즈 생각을 떨칠 수가 없어서 괴로웠어요.";
-	} else if (picNo == 5) {
-		prev.hidden = false;
-		next.hidden = false;
-		start.style.display = 'none';
-		con.innerHTML = "참지 못한 세양쥐는 치즈를 맛보기 위해 쥐구멍을 나서기로 결심했어요.";
-	} else if (picNo == 6) {
+		answer.style.display = "none";
+		nextChapter.style.display = 'none';
+		con.innerHTML = "설상가상으로, 잠자던 고양이 블리가 일어났어요! 너무너무 무서워요. 어서 도망가야겠어요!";
+	} else if (picNo ==3) {
 		prev.hidden = false;
 		next.hidden = true;
-		start.style.display = 'block';
-		con.innerHTML = "세양쥐가 무사히 치즈를 먹어볼 수 있을까요? 세양쥐의 모험을 도와주세요!"
-		
+		answer.style.display = "block";
+		nextChapter.style.display = 'none';
+		con.innerHTML = "세양쥐는 좋은 생각이 떠올랐어요. 가방에 있는 실과 냅킨을 이용하면 될 것 같아요!";
 	}
 }
 
-</script>;
+function insertAnswer() {
+	let input = prompt("정답은 무엇일까요?\n(잘 모르겠다면 hint를 입력해보세요!)");
+	if(input=="hint"){
+		alert("각각 바느질의 마지막 한 땀을 채워보세요! 정답은 네 자리의 숫자입니다. ")
+	} else if (input=="9243"){
+		alert("세양쥐는 냅킨을 바느질해서 낙하산을 만들었습니다!")
+		window.location.href = "http://localhost:8080/SeyCheese/html/chapter4.html";
+	} else {
+		alert("냅킨은 단 한장 뿐! 아껴 써야겠어요~");
+	}
+}
+</script>
 </body>
 </html>

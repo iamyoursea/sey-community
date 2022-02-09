@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/common :: html-head">
+    <meta charset="UTF-8">
+    <title>세양쥐게임즈🐭</title>
+    <link rel="stylesheet" href="https://bootswatch.com/5/morph/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <div th:replace="fragments/common :: header(${requestFrom})">-- thymeleaf header will be inserted here. --</div>
+
+    <div class="row">
+        <div class="col-md-6 my-4">
+            <h1>세양쥐게임즈🐭</h1>
+        </div>
+    </div>
+
+    <div th:replace="fragments/common :: footer">-- thymeleaf footer will be inserted here. --</div>
+</div>
+
+</body>
+</html>
