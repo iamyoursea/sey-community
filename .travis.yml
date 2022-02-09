@@ -32,6 +32,16 @@ deploy:
     acl: private
     local_dir: deploy
     wait-until-deployed: true
+  - provider: codedeploy
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key: $SECRET_ACCESS_KEY
+    bucket: sey-community
+    key: sey-community.zip
+    bundle_type: zip
+    application: sey-community
+    deployment_group: sey-community-group
+    region: ap-northeast-2
+    wait-until-deployed: true
 
 # Alert on Mail when CI executed
 notifications:
