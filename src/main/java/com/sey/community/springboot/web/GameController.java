@@ -15,6 +15,7 @@ public class GameController {
     public ModelAndView gameHome(Model model, @LoginUser SessionUser user) {
         if (user != null) {
             model.addAttribute("loginUser", user);
+            model.addAttribute("requestFrom", "games");
         }
         return new ModelAndView("sey-games");
     }
