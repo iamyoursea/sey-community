@@ -53,7 +53,7 @@ deploy:
     bucket: sey-community
     key: sey-community.zip
     bundle_type: zip
-    application: awsboard-1 # 웹 콘솔에서 등록한 코드디플로이 애플리케이션
+    application: sey-community # 웹 콘솔에서 등록한 코드디플로이 애플리케이션
     deployment_group: sey-community-group
     region: ap-northeast-2
     wait-until-deployed: true
