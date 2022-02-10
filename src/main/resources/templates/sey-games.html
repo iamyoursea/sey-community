@@ -13,9 +13,6 @@
         <div class="col-md-6 my-4">
             <h1 th:text="${boardTitle}">세양쥐게임즈🐭</h1>
         </div>
-        <div>
-            <br><br>
-        </div>
     </div>
     <div class="row">
         <div class="col-md-6">
@@ -27,25 +24,28 @@
 
     <div class="row">
         <div class="col-md-12">
-            <div class="col-md-2">
+            <div class="col-md-3">
                 <table class="thead-strong table table-secondary">
                     <tr>
-                        <td><a th:href="${'/'+requestFrom+'/seyCheese'}">
-                            <img style="width:300px; height:300px;" src="/images/seyCheese_thumb.jpg">
-                        </a></td>
-                    </tr>
-                    <tr>
-                        <strong>(Beta) 세양쥐는 치즈가 먹고 싶어</strong><br>
+                        <div class="card border-primary mb-3" style="max-width: 20rem;">
+                            <div class="card-header">세양쥐의 모험 시리즈의 시작</div>
+                            <div class="card-body">
+                                <h4 class="card-title">(Beta)세양쥐는 치즈가 먹고 싶어</h4>
+                                <p class="card-text">세양쥐의 치즈를 먹기 위한 모험 이야기! 방탈출/추리/두뇌퀴즈 장르입니다.</p>
+                                <div>
+                                    <a th:href="${'/'+requestFrom+'/seyCheese'}">
+                                        <img style="width:300px; height:300px;" src="/images/seyCheese_thumb.jpg">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
                     </tr>
                 </table>
             </div>
-            <div class="col-md-2 .offset-md-1">
+            <div class="col-md-3 .offset-md-1">
 
             </div>
-            <div class="col-md-2 .offset-md-1">
-
-            </div>
-            <div class="col-md-2 .offset-md-1">
+            <div class="col-md-3 .offset-md-1">
 
             </div>
         </div>
