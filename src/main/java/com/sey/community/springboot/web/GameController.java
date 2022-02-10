@@ -18,6 +18,7 @@ public class GameController {
             model.addAttribute("boardTitle", "세양쥐게임즈🐭");
             model.addAttribute("requestFrom", "games");
             model.addAttribute("userName", user.getName());
+            model.addAttribute("userImg", user.getPicture());
         }
         return new ModelAndView("sey-games");
     }
@@ -28,6 +29,7 @@ public class GameController {
             model.addAttribute("loginUser", user);
             model.addAttribute("requestFrom", "games");
             model.addAttribute("userName", user.getName());
+            model.addAttribute("userImg", user.getPicture());
         }
         return new ModelAndView("/games/seyCheese/index");
     }
