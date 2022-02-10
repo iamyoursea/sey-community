@@ -17,40 +17,104 @@
     <div class="row">
         <div class="col-md-6">
             세양쥐컴퍼니 제작 게임 목록
-            <br><br><br>
+            <hr style="border: 1px #7b8ab8;">
         </div>
     </div>
+
 
 
     <div class="row">
-        <div class="col-md-12">
-            <div class="col-md-3">
-                <table class="thead-strong table table-secondary">
-                    <tr>
-                        <div class="card border-primary mb-3" style="max-width: 20rem;">
-                            <div class="card-header">세양쥐의 모험 시리즈의 시작</div>
-                            <div class="card-body">
-                                <h4 class="card-title">(Beta)세양쥐는 치즈가 먹고 싶어</h4>
-                                <p class="card-text">세양쥐의 치즈를 먹기 위한 모험 이야기! 방탈출/추리/두뇌퀴즈 장르입니다.</p>
-                                <div>
-                                    <a th:href="${'/'+requestFrom+'/seyCheese'}">
-                                        <img style="width:300px; height:300px;" src="/images/seyCheese_thumb.jpg">
-                                    </a>
-                                </div>
+        <div class="col-lg-3">
+            <div class="bs-component">
+                <div class="card border-primary mb-3" style="max-width: 20rem;">
+                    <div class="card-header">세양쥐의 모험 시리즈의 시작</div>
+                        <div class="card-body">
+                            <h4 class="card-title">(Beta)세양쥐는 치즈가 먹고 싶어</h4>
+                            <p class="card-text">세양쥐의 치즈를 먹기 위한 모험 이야기! 방탈출/두뇌퀴즈 장르입니다.</p>
+                            <div>
+                                <a th:href="${'/'+requestFrom+'/seyCheese'}">
+                                    <img style="width:100%;" src="/images/seyCheese_thumb.jpg">
+                                </a>
                             </div>
                         </div>
-                    </tr>
-                </table>
+                </div>
+                <div class="card border-primary mb-3" style="max-width: 20rem;">
+                    <div class="card-header">세양쥐게임즈의 역작! 싱글 RPG</div>
+                    <div class="card-body">
+                        <h4 class="card-title">(예정)세양쥐 키우기</h4>
+                        <p class="card-text">나만의 세양쥐를 키워보세요.</p>
+                        <div>
+                            <a th:href="#">
+                                <img style="width:100%;" src="/images/seyCheese_thumb.jpg">
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="col-md-3 .offset-md-1">
-
+        </div>
+        <div class="col-lg-3">
+            <div class="bs-component">
+                <div class="card border-primary mb-3" style="max-width: 20rem;">
+                    <div class="card-header">세양쥐의 모험 시리즈 두번째</div>
+                        <div class="card-body">
+                            <h4 class="card-title">(예정)세양쥐는 햄버거가 먹고 싶어</h4>
+                            <p class="card-text">세양쥐의 햄버거를 먹기 위한 모험 이야기! 방탈출/두뇌퀴즈 장르입니다.</p>
+                            <div>
+                                <a th:href="#">
+                                    <img style="width:100%;" src="/images/seyCheese_thumb.jpg">
+                                </a>
+                            </div>
+                        </div>
+                </div>
+                <div class="card border-primary mb-3" style="max-width: 20rem;">
+                    <div class="card-header">고전 게임의 재미!</div>
+                    <div class="card-body">
+                        <h4 class="card-title">(예정)테트리스</h4>
+                        <p class="card-text">고전 게임이 오래가는 데에는 이유가 있습니다.</p>
+                        <div>
+                            <a th:href="#">
+                                <img style="width:100%;" src="/images/seyCheese_thumb.jpg">
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="col-md-3 .offset-md-1">
-
+        </div>
+        <div class="col-lg-3">
+            <div class="bs-component">
+                <div class="card border-primary mb-3" style="max-width: 20rem;">
+                    <div class="card-header">1:1 매칭 퍼즐 게임</div>
+                    <div class="card-body">
+                        <h4 class="card-title">(예정)세양쥐 vs 고양이 블리</h4>
+                        <p class="card-text">짝맞추기 퍼즐 대결!</p>
+                        <div>
+                            <a th:href="#">
+                                <img style="width:100%;" src="/images/seyCheese_thumb.jpg">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="bs-component">
+                <div class="card border-primary mb-3" style="max-width: 20rem;">
+                    <div class="card-header">쥐구멍에서 탈출한 세양쥐</div>
+                    <div class="card-body">
+                        <h4 class="card-title">(예정)세양쥐 런</h4>
+                        <p class="card-text">쥐구멍에서 탈출한 세양쥐가 고양이 블리를 피해 도망치는 게임입니다.</p>
+                        <div>
+                            <a th:href="#">
+                                <img style="width:100%;" src="/images/seyCheese_thumb.jpg">
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    <h1></h1>
+
+
     <div th:replace="fragments/common :: footer">-- thymeleaf footer will be inserted here. --</div>
 </div>
 
