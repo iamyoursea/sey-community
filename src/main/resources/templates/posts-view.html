@@ -55,7 +55,27 @@
         <a th:href="${requestFrom eq 'posts' ? '/' : ('/' + requestFrom)} + ${'?page=' + page}" role="button" class="btn btn-secondary">목록</a>
         <div style="float: right";>
             <a th:if="${loginUser ne null and (loginUser.id eq post.authorId)}" role="button" class="btn btn-outline-primary" th:href="${'/' + requestFrom + '/update/' + post.id}">수정</a>
-            <button th:if="${loginUser ne null and (loginUser.id eq post.authorId)}" class="btn btn-outline-danger" id="btn-delete">삭제</button>
+            <div class="modal">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">게시글 삭제</h5>
+                            <button th:if="${loginUser ne null and (loginUser.id eq post.authorId)}" class="btn btn-outline-danger" data-bs-toggle="modal" id="btn-delete">삭제</button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Modal body text goes here.</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary">확인</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
         </div>
     </div>
 

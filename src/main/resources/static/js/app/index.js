@@ -31,7 +31,20 @@ const main = {
             contentType: "application/json; charset=utf-8",
             data: JSON.stringify(data)
         }).done(() => {
-            alert("글이 등록되었습니다.")
+            toastr.options = {
+                closeButton: true,
+                progressBar: true,
+                showMethod: 'slideDown',
+                timeOut: 4000
+            };
+            toastr.options = {
+                closeButton: true,
+                progressBar: true,
+                showMethod: 'slideDown',
+                timeOut: 4000
+            };
+            toastr.success("글이 등록되었습니다.")
+            //alert("글이 등록되었습니다.")
             window.location.href = "/" + (writeTo != "posts" ? writeTo : "")
         }).fail(err => {
             alert(JSON.stringify(err))
@@ -54,7 +67,14 @@ const main = {
             contentType: "application/json; charset=utf-8",
             data: JSON.stringify(data)
         }).done(() => {
-            alert("글이 수정되었습니다.")
+            toastr.options = {
+                closeButton: true,
+                progressBar: true,
+                showMethod: 'slideDown',
+                timeOut: 4000
+            };
+            toastr("글이 수정되었습니다.")
+            //alert("글이 수정되었습니다.")
             window.location.href = "/" + (writeTo != "posts" ? writeTo : "")
         }).fail(err => {
             alert(JSON.stringify(err))
@@ -63,9 +83,37 @@ const main = {
     },
     delete: function () {
         const id = $("#input-id").val()
-        if(!confirm("정말 이 글을 삭제하시겠습니까?")) {
-            return false
-        }
+
+        const Common = {};
+        Common.Dialog = {
+            /**
+             * Dialog Id
+             */
+            DialogInfo: {
+                titleId: 'common-modal-title',
+                okBtnId: 'common-modal-ok-btn',
+            },
+
+            /**
+             * Default Item Message
+             */
+            Message: {
+                title: '알림',
+                ok: '확인',
+                cancel: '취소'
+            },confirm: function(data){
+                this.show('confirm', data);
+            }
+        };
+
+        $(function (){
+            Common.Dialog.confirm({
+                content: "정말 이 글을 삭제하시겠습니까?"
+                ,ok : function (){
+                    return false
+                }
+            })
+        });
 
         const writeTo = $("body").data("writeTo")
 
@@ -75,7 +123,14 @@ const main = {
             dataType: 'json',
             contentType: 'application/json; charset=utf-8'
         }).done(function () {
-            alert('글이 삭제되었습니다.');
+            toastr.options = {
+                closeButton: true,
+                progressBar: true,
+                showMethod: 'slideDown',
+                timeOut: 4000
+            };
+            toastr('글이 삭제되었습니다.');
+            //alert('글이 삭제되었습니다.');
             window.location.href = "/" + (writeTo != "posts" ? writeTo : "")
         }).fail(function (error) {
             alert(JSON.stringify(error));
