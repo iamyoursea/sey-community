@@ -13,18 +13,23 @@
         <div class="col-md-6 my-4">
             <h1 th:text="${boardTitle}">세양쥐게임즈🐭</h1>
         </div>
-        <br><br>
-        <div class="col-md-6 my-4">
+        <div>
+            <br><br>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
             <h3>세양쥐컴퍼니 제작 게임 목록</h3>
         </div>
     </div>
+
 
     <div class="row">
         <div class="col-md-12">
             <div class="col-md-2">
                 <table class="thead-strong table table-secondary">
                     <tr>
-                        <td><a th:href="${'/'+requestFrom+'/seyCheese/'+'index'}">
+                        <td><a th:href="${'/'+requestFrom+'/seyCheese/'}">
                             <img style="width:300px; height:300px;" src="/images/seyCheese_thumb.jpg">
                         </a></td>
                     </tr>
