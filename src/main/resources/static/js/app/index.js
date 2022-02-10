@@ -31,18 +31,7 @@ const main = {
             contentType: "application/json; charset=utf-8",
             data: JSON.stringify(data)
         }).done(() => {
-            toastr.options = {
-                closeButton: true,
-                progressBar: true,
-                showMethod: 'slideDown',
-                timeOut: 4000
-            };
-            toastr.options = {
-                closeButton: true,
-                progressBar: true,
-                showMethod: 'slideDown',
-                timeOut: 4000
-            };
+
             toastr.success("글이 등록되었습니다.")
             //alert("글이 등록되었습니다.")
             window.location.href = "/" + (writeTo != "posts" ? writeTo : "")
@@ -67,12 +56,7 @@ const main = {
             contentType: "application/json; charset=utf-8",
             data: JSON.stringify(data)
         }).done(() => {
-            toastr.options = {
-                closeButton: true,
-                progressBar: true,
-                showMethod: 'slideDown',
-                timeOut: 4000
-            };
+
             toastr("글이 수정되었습니다.")
             //alert("글이 수정되었습니다.")
             window.location.href = "/" + (writeTo != "posts" ? writeTo : "")
@@ -123,12 +107,7 @@ const main = {
             dataType: 'json',
             contentType: 'application/json; charset=utf-8'
         }).done(function () {
-            toastr.options = {
-                closeButton: true,
-                progressBar: true,
-                showMethod: 'slideDown',
-                timeOut: 4000
-            };
+
             toastr('글이 삭제되었습니다.');
             //alert('글이 삭제되었습니다.');
             window.location.href = "/" + (writeTo != "posts" ? writeTo : "")
