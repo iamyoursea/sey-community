@@ -20,4 +20,13 @@ public class GameController {
         }
         return new ModelAndView("sey-games");
     }
+
+    @GetMapping("/games/seyCheese")
+    public ModelAndView seyCheeseIndex(Model model, @LoginUser SessionUser user) {
+        if (user != null) {
+            model.addAttribute("loginUser", user);
+            model.addAttribute("requestFrom", "games");
+        }
+        return new ModelAndView("/games/seyCheese/index");
+    }
 }
