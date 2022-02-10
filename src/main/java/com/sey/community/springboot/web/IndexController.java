@@ -95,6 +95,9 @@ public class IndexController {
             return "redirect:/";
         }
 
+        model.addAttribute("userName", loginUser.getName());
+        model.addAttribute("userImg", loginUser.getPicture());
+
         return "posts-update";
     }
 
@@ -124,6 +127,10 @@ public class IndexController {
 
         System.out.println(">> RemoteIP: " + remoteIp);
         System.out.println(">> currentPageNum: " + page);
+
+        // 헤더에 이름/사진이 안나옴
+        model.addAttribute("userName", loginUser.getName());
+        model.addAttribute("userImg", loginUser.getPicture());
 
         return "posts-view";
     }
@@ -197,6 +204,9 @@ public class IndexController {
             return "redirect:/";
         }
 
+        model.addAttribute("userName", loginUser.getName());
+        model.addAttribute("userImg", loginUser.getPicture());
+
         return "posts-update";
     }
 
@@ -220,7 +230,12 @@ public class IndexController {
         }
 
         logService.save(LogSaveRequestDTO.builder().articleId(id).boardName("notice").userId(userId).ipAddress(remoteIp).build());
-
+        
+        
+        //헤더ㅏ에 이름/사진 안나옴
+        model.addAttribute("userName", loginUser.getName());
+        model.addAttribute("userImg", loginUser.getPicture());
+        
         return "posts-view";
     }
 
