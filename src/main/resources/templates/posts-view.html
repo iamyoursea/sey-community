@@ -53,7 +53,7 @@
         </div>
 
         <a th:href="${requestFrom eq 'posts' ? '/' : ('/' + requestFrom)} + ${'?page=' + page}" role="button" class="btn btn-secondary">목록</a>
-        <div stylle="float: right";>
+        <div style="float: right";>
             <a th:if="${loginUser ne null and (loginUser.id eq post.authorId)}" role="button" class="btn btn-outline-primary" th:href="${'/' + requestFrom + '/update/' + post.id}">수정</a>
             <button th:if="${loginUser ne null and (loginUser.id eq post.authorId)}" class="btn btn-outline-danger" id="btn-delete">삭제</button>
         </div>
