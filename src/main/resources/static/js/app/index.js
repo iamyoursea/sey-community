@@ -31,9 +31,7 @@ const main = {
             contentType: "application/json; charset=utf-8",
             data: JSON.stringify(data)
         }).done(() => {
-
-            toastr.success("글이 등록되었습니다.")
-            //alert("글이 등록되었습니다.")
+            alert("글이 등록되었습니다.")
             window.location.href = "/" + (writeTo != "posts" ? writeTo : "")
         }).fail(err => {
             alert(JSON.stringify(err))
@@ -56,9 +54,7 @@ const main = {
             contentType: "application/json; charset=utf-8",
             data: JSON.stringify(data)
         }).done(() => {
-
-            toastr("글이 수정되었습니다.")
-            //alert("글이 수정되었습니다.")
+            alert("글이 수정되었습니다.")
             window.location.href = "/" + (writeTo != "posts" ? writeTo : "")
         }).fail(err => {
             alert(JSON.stringify(err))
@@ -99,6 +95,10 @@ const main = {
             })
         });
 
+       // if(!confirm("정말 이 글을 삭제하시겠습니까?")) {
+       //     return false
+       // }
+
         const writeTo = $("body").data("writeTo")
 
         $.ajax({
@@ -107,9 +107,7 @@ const main = {
             dataType: 'json',
             contentType: 'application/json; charset=utf-8'
         }).done(function () {
-
-            toastr('글이 삭제되었습니다.');
-            //alert('글이 삭제되었습니다.');
+            alert('글이 삭제되었습니다.');
             window.location.href = "/" + (writeTo != "posts" ? writeTo : "")
         }).fail(function (error) {
             alert(JSON.stringify(error));
