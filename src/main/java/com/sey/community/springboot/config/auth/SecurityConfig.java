@@ -40,7 +40,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .antMatchers(HttpMethod.POST,"/api/v1/notice/**").hasRole(Role.ADMIN.name())
                     .antMatchers(HttpMethod.PUT,"/api/v1/notice/**").hasRole(Role.ADMIN.name())
                     .antMatchers(HttpMethod.DELETE,"/api/v1/notice/**").hasRole(Role.ADMIN.name())
-                    .antMatchers(HttpMethod.GET,"/api/v1/notice/**").hasAnyRole(Role.ADMIN.name(), Role.USER.name())
+                    .antMatchers(HttpMethod.GET,"/api/v1/notice/**").permitAll()
                     .antMatchers("/api/v1/posts/**").hasAnyRole(Role.ADMIN.name(), Role.USER.name())
                     .antMatchers(HttpMethod.GET,"/api/v1/log/**").permitAll()
                     .antMatchers(HttpMethod.POST,"/api/v1/comments").hasAnyRole(Role.ADMIN.name(), Role.USER.name())
