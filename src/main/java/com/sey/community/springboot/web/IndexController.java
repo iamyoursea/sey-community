@@ -241,7 +241,10 @@ public class IndexController {
         //헤더ㅏ에 이름/사진 안나옴
         model.addAttribute("userName", loginUser.getName());
         model.addAttribute("userImg", loginUser.getPicture());
-        
+
+        //댓글 보기 기능
+        model.addAttribute("comments", commentsService.findByParentIdByOrderByIdDesc(id));
+
         return "posts-view";
     }
 
