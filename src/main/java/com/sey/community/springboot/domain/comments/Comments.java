@@ -21,12 +21,15 @@ public class Comments extends BaseTimeEntity {
 
     private String author;
 
+    private Long authorId;
+
     private Long parentId;
 
     @Builder
-    public Comments(String content, String author, Long parentId){
+    public Comments(String content, String author, Long authorId, Long parentId){
         this.content = content;
         this.author = author;
+        this.authorId = authorId;
         this.parentId = parentId;
     }
 
