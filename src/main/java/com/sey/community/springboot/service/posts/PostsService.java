@@ -70,7 +70,8 @@ public class PostsService {
 
     @Transactional
     public void delete(Long id) {
-        Posts post = postsRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("해당 게시물이 없습니다. id=" + id));
+        Posts post = postsRepository.findById(id).orElseThrow(()
+                -> new IllegalArgumentException("해당 게시물이 없습니다. id=" + id));
 
         postsRepository.delete(post);
 

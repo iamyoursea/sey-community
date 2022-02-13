@@ -137,6 +137,10 @@ const main = {
     commentDelete : function () {
         const id = $('#comment-table').attr('name');
 
+        if(!confirm("댓글을 삭제하시겠습니까?")) {
+            return false;
+        }
+        
         $.ajax({
             type: 'DELETE',
             url: '/api/v1/comments/'+id,
