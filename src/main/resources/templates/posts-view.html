@@ -78,7 +78,7 @@
         <table class="table table-horizontal table-bordered" name="center-align">
             <thead class="thead-strong">
             <tr>
-                <!--<th>cid</th>-->
+                <th></th>
                 <th>작성자</th>
                 <th>내용</th>
                 <th>등록일</th>
@@ -87,7 +87,7 @@
             </thead>
             <tbody id="tbody">
                 <tr id="comment-table" th:each="comment: ${comments}" th:name="${comment.id}">
-                    <!--<td id="comment-id" th:text="${comment.id}"></td>-->
+                    <td id="comment-id" th:text="${comment.id}" th:name="${comment.id}" hidden></td>
                     <td th:text="${comment.author}">author</td>
                     <td th:text="${comment.content}">content</td>
                     <td th:text="${comment.modifiedDate}"></td>
