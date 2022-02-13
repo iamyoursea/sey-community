@@ -117,7 +117,7 @@ const main = {
         const data = {
             author: $('#comment_author').val(),
             content: $('#comment_content').val(),
-            parentId: $('#id').val()
+            parentId: $('#comment_parentId').val()
         };
         $.ajax({
             type: 'POST',
