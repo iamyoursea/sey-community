@@ -60,11 +60,12 @@
     </div>
     <br>
 
-    <!-- 댓글 영역-->
-    <div class="col-md-12" th:if="${requestFrom eq 'posts'}">
+    <!--댓글 영역-->
+    <div class="row">
+        <div class="col-md-12" th:if="${requestFrom eq 'posts'}">
         <form>
             <div class="col-md-2" style="float:left" >
-                <input type="text" class="form-control" id="comment_author" th:text="${userName}" readonly>
+                <input type="text" class="form-control" id="comment_author" th:value="${userName}" readonly>
             </div>
             <div class="col-md-9" style="float:left">
                 <input type="text" class="form-control" id="comment_content">
@@ -83,7 +84,7 @@
             </thead>
             <tbody id="tbody">
             <tr th:each="comment: ${comments}">
-                <td id="comment-table" th:name="${comment.id}">0</td>
+                <!--<td id="comment-table" th:name="${comment.id}"></td>-->
                 <td th:text="${comment.author}">author</td>
                 <td th:text="${comment.content}">content</td>
                 <td th:text="${comment.modifiedDate}"></td>
@@ -92,6 +93,7 @@
             </tr>
             </tbody>
         </table>
+    </div>
     </div>
 
 

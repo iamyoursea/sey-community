@@ -94,18 +94,9 @@ const main = {
             }
         };
 
-        $(function (){
-            Common.Dialog.confirm({
-                content: "정말 이 글을 삭제하시겠습니까?"
-                ,ok : function (){
-                    return false
-                }
-            })
-        });
-
-       // if(!confirm("정말 이 글을 삭제하시겠습니까?")) {
-       //     return false
-       // }
+        if(!confirm("정말 이 글을 삭제하시겠습니까?")) {
+            return false
+       }
 
         const writeTo = $("body").data("writeTo")
 
