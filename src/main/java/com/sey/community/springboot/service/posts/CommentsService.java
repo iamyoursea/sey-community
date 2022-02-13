@@ -42,7 +42,7 @@ public class CommentsService {
 
 
     @Transactional
-    public void delete(Long id, @LoginUser SessionUser user){
+    public void delete(Long id){
         Comments comments = commentsRepository.findById(id)
                 .orElseThrow(()->new IllegalArgumentException("해당 댓글이 없습니다. id="+id));
         commentsRepository.delete(comments);
