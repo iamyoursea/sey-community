@@ -134,7 +134,7 @@ const main = {
     },
 
     commentDelete : function () {
-        const id = $('#comment-table').attr('name');
+        const id = $('#comment-table').attr('id');
 
         $.ajax({
             type: 'DELETE',
