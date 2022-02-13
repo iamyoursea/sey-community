@@ -90,8 +90,9 @@
                     <td th:text="${comment.author}">author</td>
                     <td th:text="${comment.content}">content</td>
                     <td th:text="${comment.modifiedDate}"></td>
-                    <td id="comment-id" th:name="${comment.id}"><button th:if="${loginUser ne null and (loginUser.id eq comment.authorId)}"
-                                type="button" class="btn btn-danger" id="btn-com-delete">❌</button></td>
+                    <td><button th:if="${loginUser ne null and (loginUser.id eq comment.authorId)}"
+                                type="button" class="btn btn-danger" id="btn-com-delete"
+                                th:onclick="|javascript:index.commentDelete(${post.id}, ${comment.id})|">❌</button></td>
                 </tr>
             </tbody>
         </table>

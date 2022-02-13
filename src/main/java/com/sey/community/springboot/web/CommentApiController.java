@@ -13,18 +13,17 @@ public class CommentApiController {
 
     private final CommentsService commentsService;
 
-    @PostMapping("/api/v1/comments")
-    public Long save(@RequestBody CommentsSaveRequestDTO requestDto)
-
+    @PostMapping("/api/v1/posts/{postId}/comments")
+    public Long save(@RequestBody CommentsSaveRequestDTO requestDto, @PathVariable String postId)
     {
         return commentsService.save(requestDto);
     }
 
-    @DeleteMapping("/api/v1/comments/{id}")
+    @DeleteMapping("/api/v1/posts/{postId}/comments/{commentId}")
     //public Long delete(@PathVariable Long id, @LoginUser SessionUser user){
         //commentsService.delete(id,user);
-    public Long delete(@PathVariable Long id){
-        commentsService.delete(id);
-        return id;
+    public Long delete(@PathVariable Long commentId, @PathVariable String postId){
+        commentsService.delete(commentId);
+        return commentId;
     }
 }

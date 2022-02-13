@@ -17,9 +17,6 @@ const main = {
             _this.commentSave();
         });
 
-        $(document).on('click','#btn-com-delete',function(){
-            _this.commentDelete();
-        });
     },
     save: function () {
 
@@ -133,7 +130,7 @@ const main = {
             alert(JSON.stringify(error));
         });
     },
-
+/*
     commentDelete : function () {
         //const id = $('#comment-table').attr('name');
         const id = $('#comment-id').attr('name');
@@ -157,7 +154,20 @@ const main = {
             alert(JSON.stringify(error));
         });
     }
-
+*/
+    commentDelete : function (postId, commentsId) {
+        $.ajax({
+            type: 'DELETE',
+            url: '/api/v1/'+ postId +'/comments/'+commentsId,
+            dataType: 'json',
+            contentType:'application/json; charset=utf-8'
+        }).done(function() {
+            alert(id +'번 댓글이 삭제되었습니다.');
+            location.href = '/posts/'+postId;
+        }).fail(function (error) {
+            alert(JSON.stringify(error));
+        });
+    }
 };
 
 main.init();
