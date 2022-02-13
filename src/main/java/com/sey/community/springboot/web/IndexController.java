@@ -242,8 +242,8 @@ public class IndexController {
         model.addAttribute("userName", loginUser.getName());
         model.addAttribute("userImg", loginUser.getPicture());
 
-        //댓글 보기 기능
-        model.addAttribute("comments", commentsService.findByParentIdByOrderByIdDesc(id));
+        //댓글 보기 기능(공지에서는 해제)
+        //model.addAttribute("comments", commentsService.findByParentIdByOrderByIdDesc(id));
 
         return "posts-view";
     }
