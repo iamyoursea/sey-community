@@ -61,7 +61,7 @@
     <br>
 
     <!-- 댓글 영역-->
-    <div class="col-md-12" th:if="${requestFrom eq '자유게시판'}">
+    <div class="col-md-12" th:if="${requestFrom eq 'posts'}">
         <form>
             <div class="col-md-2" style="float:left" >
                 <input type="text" class="form-control" id="comment_author" th:text="${userName}" readonly>
