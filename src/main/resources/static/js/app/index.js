@@ -117,9 +117,10 @@ const main = {
             parentId: $('#comment-parentId').val(),
             authorId: $("#user-id").val()
         };
+
         $.ajax({
             type: 'POST',
-            url: '/api/v1/comments',
+            url: '/api/v1/posts/'+data.parentId+'comments',
             dataType: 'json',
             contentType:'application/json; charset=utf-8',
             data: JSON.stringify(data)
