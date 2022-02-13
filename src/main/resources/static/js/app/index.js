@@ -147,6 +147,7 @@ const main = {
             url: '/api/v1/comments/'+id,
             dataType: 'json',
             contentType:'application/json; charset=utf-8'
+
         }).done(function() {
             alert('댓글이 삭제되었습니다.');
             window.location.href = window.location.href;
