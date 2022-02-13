@@ -72,28 +72,6 @@ const main = {
     delete: function () {
         const id = $("#input-id").val()
 
-        const Common = {};
-        Common.Dialog = {
-            /**
-             * Dialog Id
-             */
-            DialogInfo: {
-                titleId: 'common-modal-title',
-                okBtnId: 'common-modal-ok-btn',
-            },
-
-            /**
-             * Default Item Message
-             */
-            Message: {
-                title: '알림',
-                ok: '확인',
-                cancel: '취소'
-            },confirm: function(data){
-                this.show('confirm', data);
-            }
-        };
-
         if(!confirm("정말 이 글을 삭제하시겠습니까?")) {
             return false
        }
@@ -136,6 +114,10 @@ const main = {
 
     commentDelete : function () {
         const id = $("#comment-id").val();
+
+        if(!confirm("댓글을 삭제하시겠습니까?")) {
+            return false
+        }
 
         $.ajax({
             type: 'DELETE',
