@@ -116,6 +116,7 @@ const main = {
     commentSave : function () {
         const data = {
             author: $('#comment_author').val(),
+            authorId: $('comment_authorId').val(),
             content: $('#comment_content').val(),
             parentId: $('#comment_parentId').val()
         };

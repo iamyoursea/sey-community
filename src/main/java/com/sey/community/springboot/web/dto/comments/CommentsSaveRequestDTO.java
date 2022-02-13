@@ -13,14 +13,16 @@ public class CommentsSaveRequestDTO {
 
     private String content;
     private String author;
+    private Long authorId;
     private Long parentId;
     private PostsRepository postsRepository;
 
 
     @Builder
-    public CommentsSaveRequestDTO(String content, String author, Long parentId){
+    public CommentsSaveRequestDTO(String content, String author, Long authorId, Long parentId){
         this.content = content;
         this.author = author;
+        this.authorId = authorId;
         this.parentId = parentId;
     }
 
@@ -28,6 +30,7 @@ public class CommentsSaveRequestDTO {
         return Comments.builder()
                 .content(content)
                 .author(author)
+                .authorId(authorId)
                 .parentId(parentId)
                 .build();
     }
