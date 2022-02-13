@@ -245,7 +245,7 @@ public class IndexController {
         //댓글 보기 기능(공지에서는 해제)
         //model.addAttribute("comments", commentsService.findByParentIdByOrderByIdDesc(id));
 
-        return "posts-view";
+        return "notice-view";
     }
 
     @GetMapping("/search")
