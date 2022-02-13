@@ -158,7 +158,7 @@ const main = {
     commentDelete : function (postId, commentsId) {
         $.ajax({
             type: 'DELETE',
-            url: '/api/v1/'+ postId +'/comments/'+commentsId,
+            url: '/api/v1/posts/'+ postId +'/comments/'+commentsId,
             dataType: 'json',
             contentType:'application/json; charset=utf-8'
         }).done(function() {
