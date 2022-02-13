@@ -1,6 +1,6 @@
 #!/bin/bash
 
-REPOSITORY=/home/ec2-user/app/step3
+REPOSITORY=/home/ec2-user/app/nonstop
 PROJECT_NAME=sey-community
 
 echo "> Build 파일 복사"

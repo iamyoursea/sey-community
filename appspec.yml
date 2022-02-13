@@ -2,7 +2,7 @@ version: 0.0
 os: linux
 files:
   - source: /
-    destination: /home/ec2-user/app/step3/zip
+    destination: /home/ec2-user/app/nonstop/zip
     overwrite: yes
 
 permissions:
@@ -22,5 +22,5 @@ hooks:
       runas: ec2-user
   ValidateService:
     - location: health.sh
-      timeout: 180
+      timeout: 60
       runas: ec2-user
