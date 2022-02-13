@@ -1,11 +1,11 @@
 plugins {
-    id 'org.springframework.boot' version '2.3.1.RELEASE'
-    id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+    id 'org.springframework.boot' version '2.4.1'
+    id 'io.spring.dependency-management' version '1.0.10.RELEASE'
     id 'java'
 }
 
 group 'com.sey.community'
-version '1.0.1-SNAPSHOT-'+new Date().format("yyyyMMddHHmmss")
+version '1.0.2-SNAPSHOT-'+new Date().format("yyyyMMddHHmmss")
 
 repositories {
     mavenCentral()
@@ -22,6 +22,9 @@ dependencies {
     // lombok
     annotationProcessor("org.projectlombok:lombok")
     compileOnly("org.projectlombok:lombok")
+    implementation("org.projectlombok:lombok")
+    testImplementation("org.projectlombok:lombok")
+    testAnnotationProcessor("org.projectlombok:lombok")
 
     // https://mvnrepository.com/artifact/org.assertj/assertj-core
     testImplementation group: 'org.assertj', name: 'assertj-core', version: '3.6.1'
@@ -44,7 +47,7 @@ dependencies {
     implementation 'org.springframework.session:spring-session-jdbc'
 
     // https://mvnrepository.com/artifact/org.springframework.security/spring-security-test
-    testImplementation group: 'org.springframework.security', name: 'spring-security-test', version: '5.3.3.RELEASE'
+    testImplementation group: 'org.springframework.security', name: 'spring-security-test'
 
     // https://mvnrepository.com/artifact/org.mariadb.jdbc/mariadb-java-client
     implementation group: 'org.mariadb.jdbc', name: 'mariadb-java-client', version: '2.6.1'

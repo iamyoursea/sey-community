@@ -1,7 +1,6 @@
 language: java
 jdk:
   - openjdk8
-  # oraclejdk11
 
 branches:
   only:
@@ -35,7 +34,7 @@ before_deploy:
   - cp build/libs/*.jar before-deploy/
   - cd before-deploy && zip -r before-deploy * # before-deploy로 이동 후 전체 압축
   - cd ../ && mkdir -p deploy
-  - mv before-deploy/before-deploy.zip deploy/sey-community.zip
+  - mv before-deploy/before-deploy.zip deploy/sey-community.zip # deploy로 zip파일 이동
 
 deploy:
   - provider: s3
