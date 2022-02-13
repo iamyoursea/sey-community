@@ -1,5 +1,7 @@
 package com.sey.community.springboot.web;
 
+import com.sey.community.springboot.config.auth.LoginUser;
+import com.sey.community.springboot.config.auth.dto.SessionUser;
 import com.sey.community.springboot.service.posts.CommentsService;
 import com.sey.community.springboot.web.dto.comments.CommentsSaveRequestDTO;
 import lombok.RequiredArgsConstructor;
@@ -19,8 +21,8 @@ public class CommentApiController {
     }
 
     @DeleteMapping("/api/v1/comments/{id}")
-    public Long delete(@PathVariable Long id){
-        commentsService.delete(id);
+    public Long delete(@PathVariable Long id, @LoginUser SessionUser user){
+        commentsService.delete(id,user);
         return id;
     }
 }
