@@ -162,7 +162,7 @@ const main = {
             dataType: 'json',
             contentType:'application/json; charset=utf-8'
         }).done(function() {
-            alert(id +'번 댓글이 삭제되었습니다.');
+            alert(commentsId +'번 댓글이 삭제되었습니다.');
             location.href = '/posts/'+postId;
         }).fail(function (error) {
             alert(JSON.stringify(error));
