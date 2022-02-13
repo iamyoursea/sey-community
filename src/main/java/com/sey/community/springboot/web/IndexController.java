@@ -2,6 +2,7 @@ package com.sey.community.springboot.web;
 
 import com.sey.community.springboot.config.auth.LoginUser;
 import com.sey.community.springboot.config.auth.dto.SessionUser;
+import com.sey.community.springboot.service.posts.CommentsService;
 import com.sey.community.springboot.service.posts.LogService;
 import com.sey.community.springboot.service.posts.NoticeService;
 import com.sey.community.springboot.service.posts.PostsService;
@@ -27,6 +28,7 @@ public class IndexController {
 
     private final PostsService postsService;
     private final NoticeService noticeService;
+    private final CommentsService commentsService;
     private final LogService logService;
 
     private static final Integer POSTS_PER_PAGE = 10;
@@ -131,6 +133,10 @@ public class IndexController {
         // 헤더에 이름/사진이 안나옴
         model.addAttribute("userName", loginUser.getName());
         model.addAttribute("userImg", loginUser.getPicture());
+
+        //댓글 보기 기능
+        model.addAttribute("comments", commentsService.findByParentIdByOrderByIdDesc(id));
+
 
         return "posts-view";
     }

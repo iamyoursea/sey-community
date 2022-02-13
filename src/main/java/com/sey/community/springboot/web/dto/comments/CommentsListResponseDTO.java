@@ -9,8 +9,7 @@ import java.time.LocalDateTime;
 public class CommentsListResponseDTO {
 
     private Long id;
-    private String author;
-    private String content;
+    private String author, content;
     private LocalDateTime modifiedDate;
 
     public CommentsListResponseDTO(Comments entity){
