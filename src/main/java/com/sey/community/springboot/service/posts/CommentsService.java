@@ -45,14 +45,7 @@ public class CommentsService {
     public void delete(Long id, @LoginUser SessionUser user){
         Comments comments = commentsRepository.findById(id)
                 .orElseThrow(()->new IllegalArgumentException("해당 댓글이 없습니다. id="+id));
-        if (user.getId().equals(comments.getAuthorId())) {
-            commentsRepository.delete(comments);
-        }
-        else{
-            throw new IllegalAccessError("본인의 댓글만 삭제 가능합니다.");
-        }
-
+        commentsRepository.delete(comments);
     }
-
-
 }
+
