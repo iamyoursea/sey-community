@@ -126,7 +126,7 @@ const main = {
             data: JSON.stringify(data)
         }).done(function() {
             alert('댓글이 등록되었습니다.');
-            window.location.href = window.location.href;
+            location.href = '/posts/view/'+data.parentId;
         }).fail(function (error) {
             alert(JSON.stringify(error));
         });
@@ -157,14 +157,17 @@ const main = {
     }
 */
     commentDelete : function (postId, commentsId) {
+        if(!confirm("댓글을 삭제하시겠습니까?")) {
+            return false
+        }
         $.ajax({
             type: 'DELETE',
             url: '/api/v1/posts/'+ postId +'/comments/'+commentsId,
             dataType: 'json',
             contentType:'application/json; charset=utf-8'
         }).done(function() {
-            alert(commentsId +'번 댓글이 삭제되었습니다.');
-            location.href = '/posts/'+postId;
+            alert('댓글이 삭제되었습니다.');
+            location.href = '/posts/view/'+postId;
         }).fail(function (error) {
             alert(JSON.stringify(error));
         });
