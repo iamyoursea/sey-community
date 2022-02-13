@@ -115,10 +115,10 @@ const main = {
 
     commentSave : function () {
         const data = {
-            author: $('#comment_author').val(),
-            authorId: $('comment_authorId').val(),
-            content: $('#comment_content').val(),
-            parentId: $('#comment_parentId').val()
+            author: $('#comment-author').val(),
+            content: $('#comment-content').val(),
+            parentId: $('#comment-parentId').val(),
+            authorId: $("#user-id").val()
         };
         $.ajax({
             type: 'POST',

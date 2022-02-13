@@ -64,13 +64,13 @@
     <div class="row">
         <div class="col-md-12" th:if="${requestFrom eq 'posts'}">
         <form>
-            <input type="text" class="form-control" id="comment_authorId" th:value="${loginUser.id}" hidden>
-            <input type="text" class="form-control" id="comment_parentId" th:value="${post.id}" hidden>
+            <input type="text" class="form-control" id="user-id" th:value="${loginUser.id}" hidden>
+            <input type="text" class="form-control" id="comment-parentId" th:value="${post.id}" hidden>
             <div class="col-md-2" style="float:left" >
-                <input type="text" class="form-control" id="comment_author" th:value="${userName}" readonly>
+                <input type="text" class="form-control" id="comment-author" th:value="${userName}" readonly>
             </div>
             <div class="col-md-9" style="float:left">
-                <input type="text" class="form-control" id="comment_content">
+                <input type="text" class="form-control" id="comment-content">
             </div>
             <button type="button" class="btn btn-primary" id="btn-com-save" style="display: inline-block">🗨</button>
         </form>
