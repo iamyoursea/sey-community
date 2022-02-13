@@ -86,7 +86,7 @@
             </tr>
             </thead>
             <tbody id="tbody">
-                <tr id="comment-table" th:each="comment: ${comments}" > //th:name="${comment.id}">
+                <tr id="comment-table" th:each="comment: ${comments}">
                     <td id="comment-id" th:name="${comment.id}"></td>
                     <td th:text="${comment.author}">author</td>
                     <td th:text="${comment.content}">content</td>
