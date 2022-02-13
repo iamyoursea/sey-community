@@ -1,4 +1,4 @@
-package com.sey.community.springboot.domain.log;
+package com.sey.community.springboot.domain.posts.log;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

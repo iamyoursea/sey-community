@@ -59,6 +59,43 @@
         </div>
     </div>
 
+
+    <!-- 댓글 영역-->
+    <div class="col-md-4">
+        <form>
+            <div class="col-md-2" style="float:left" >
+                <input type="text" class="form-control" id="comment_author" th:text="${userName}" readonly>
+            </div>
+            <div class="col-md-4" style="float:left">
+                <input type="text" class="form-control" id="comment_content">
+            </div>
+            <button type="button" class="btn btn-primary" id="btn-com-save" style="display: inline-block">댓글 등록</button>
+        </form>
+        <table class="table table-horizontal table-bordered" name="center-align">
+            <thead class="thead-strong">
+            <tr>
+                <th>작성자</th>
+                <th>내용</th>
+                <th>등록일</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody id="tbody">
+            <tr th:each="comment: ${comments}">
+            <tr id="comment-table" th:text="${userName}">
+                <td th:text="${comments.author}">author</td>
+                <td th:text="${comments.content}">{{content}}</td>
+                <td th:text="${#strings.arraySplit(comments.modifiedDate,'T')[0]}"
+                    th:title="${#strings.arraySplit(comments.modifiedDate,'T')[0]}
+                                + ' ' +${#strings.arraySplit(post.modifiedDate,'T')[1]}">2000</td>
+                <td><button type="button" class="btn btn-danger" id="btn-com-delete">삭제</button></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+
     <div th:replace="fragments/common :: footer">-- thymeleaf footer will be inserted here. --</div>
 </div>
 

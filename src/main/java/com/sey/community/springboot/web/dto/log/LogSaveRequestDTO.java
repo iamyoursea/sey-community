@@ -1,6 +1,6 @@
 package com.sey.community.springboot.web.dto.log;
 
-import com.sey.community.springboot.domain.log.Log;
+import com.sey.community.springboot.domain.posts.log.Log;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

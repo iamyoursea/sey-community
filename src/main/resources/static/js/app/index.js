@@ -12,6 +12,14 @@ const main = {
         $('#btn-delete').on('click', function () {
             _this.delete();
         });
+
+        $('#btn-com-save').on('click', function () {
+            _this.commentSave();
+        });
+
+        $(document).on('click','#btn-com-delete',function(){
+            _this.commentDelete();
+        });
     },
     save: function () {
 
@@ -32,7 +40,7 @@ const main = {
             data: JSON.stringify(data)
         }).done(() => {
             alert("글이 등록되었습니다.")
-            window.location.href = "/" + (writeTo != "posts" ? writeTo : "")
+            window.location.href = "/" + (writeTo !== "posts" ? writeTo : "")
         }).fail(err => {
             alert(JSON.stringify(err))
         });
@@ -55,7 +63,7 @@ const main = {
             data: JSON.stringify(data)
         }).done(() => {
             alert("글이 수정되었습니다.")
-            window.location.href = "/" + (writeTo != "posts" ? writeTo : "")
+            window.location.href = "/" + (writeTo !== "posts" ? writeTo : "")
         }).fail(err => {
             alert(JSON.stringify(err))
             console.log(err)
@@ -108,7 +116,43 @@ const main = {
             contentType: 'application/json; charset=utf-8'
         }).done(function () {
             alert('글이 삭제되었습니다.');
-            window.location.href = "/" + (writeTo != "posts" ? writeTo : "")
+            window.location.href = "/" + (writeTo !== "posts" ? writeTo : "")
+        }).fail(function (error) {
+            alert(JSON.stringify(error));
+        });
+    },
+
+    commentSave : function () {
+        const data = {
+            author: $('#comment_author').val(),
+            content: $('#comment_content').val(),
+            parentId: $('#id').val()
+        };
+        $.ajax({
+            type: 'POST',
+            url: '/api/v1/comments',
+            dataType: 'json',
+            contentType:'application/json; charset=utf-8',
+            data: JSON.stringify(data)
+        }).done(function() {
+            alert('댓글이 등록되었습니다.');
+            window.location.href = window.location.href;
+        }).fail(function (error) {
+            alert(JSON.stringify(error));
+        });
+    },
+
+    commentDelete : function () {
+        const id = $('#comment-table').attr('name');
+
+        $.ajax({
+            type: 'DELETE',
+            url: '/api/v1/comments/'+id,
+            dataType: 'json',
+            contentType:'application/json; charset=utf-8'
+        }).done(function() {
+            alert('댓글이 삭제되었습니다.');
+            window.location.href = window.location.href;
         }).fail(function (error) {
             alert(JSON.stringify(error));
         });

@@ -1,7 +1,7 @@
 package com.sey.community.springboot.service.posts;
 
-import com.sey.community.springboot.domain.log.Log;
-import com.sey.community.springboot.domain.log.LogRepository;
+import com.sey.community.springboot.domain.posts.log.Log;
+import com.sey.community.springboot.domain.posts.log.LogRepository;
 import com.sey.community.springboot.web.dto.log.LogSaveRequestDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

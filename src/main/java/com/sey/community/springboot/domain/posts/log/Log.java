@@ -1,4 +1,4 @@
-package com.sey.community.springboot.domain.log;
+package com.sey.community.springboot.domain.posts.log;
 
 import com.sey.community.springboot.domain.BaseTimeEntity;
 import lombok.Builder;
