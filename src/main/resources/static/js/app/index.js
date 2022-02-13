@@ -136,9 +136,9 @@ const main = {
 
     commentDelete : function () {
         //const id = $('#comment-table').attr('name');
-        //const id = $('#comment-id').attr('name');
+        const id = $('#comment-id').attr('name');
 
-        const id = $('btn-com-delete').attr('name');
+        //const id = $('btn-com-delete').attr('name');
 
         if(!confirm(id +"번 댓글을 삭제하시겠습니까?")) {
             return false;
