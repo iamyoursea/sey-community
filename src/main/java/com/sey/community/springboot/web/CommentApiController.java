@@ -1,7 +1,5 @@
 package com.sey.community.springboot.web;
 
-import com.sey.community.springboot.config.auth.LoginUser;
-import com.sey.community.springboot.config.auth.dto.SessionUser;
 import com.sey.community.springboot.service.posts.CommentsService;
 import com.sey.community.springboot.web.dto.comments.CommentsSaveRequestDTO;
 import lombok.RequiredArgsConstructor;
