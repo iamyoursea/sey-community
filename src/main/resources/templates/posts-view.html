@@ -92,7 +92,7 @@
                     <td th:text="${comment.modifiedDate}"></td>
                     <td><button th:if="${loginUser ne null and (loginUser.id eq comment.authorId)}"
                                 type="button" class="btn btn-danger" id="btn-com-delete"
-                                th:onclick="|javascript:index.commentDelete(${post.id}, ${comment.id})|">❌</button></td>
+                                th:onclick="|javascript:commentDelete(${post.id}, ${comment.id})|">❌</button></td>
                 </tr>
             </tbody>
         </table>
