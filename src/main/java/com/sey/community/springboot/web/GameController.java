@@ -31,6 +31,6 @@ public class GameController {
             model.addAttribute("userName", user.getName());
             model.addAttribute("userImg", user.getPicture());
         }
-        return new ModelAndView("seyCheeseIndex");
+        return new ModelAndView("games/seyCheese/seyCheeseIndex");
     }
 }
