@@ -57,7 +57,7 @@ dependencies {
     implementation 'org.mariadb.jdbc:mariadb-java-client'
 
     // AWS Cloud
-    implementation("org.springframework.cloud:spring-cloud-starter-aws")
+    implementation("org.springframework.cloud:spring-cloud-starter-aws:2.2.6.RELEASE")
 }
 
 dependencyManagement {
