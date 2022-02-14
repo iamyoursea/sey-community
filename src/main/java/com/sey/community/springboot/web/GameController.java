@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller@RequiredArgsConstructor
@@ -32,5 +33,16 @@ public class GameController {
             model.addAttribute("userImg", user.getPicture());
         }
         return new ModelAndView("games/seyCheese/seyCheeseIndex");
+    }
+
+    @GetMapping("/games/seyCheese/{page}")
+    public ModelAndView seyCheeseChapterGo(Model model, @LoginUser SessionUser user, @PathVariable String page) {
+        if (user != null) {
+            model.addAttribute("loginUser", user);
+            model.addAttribute("requestFrom", "games");
+            model.addAttribute("userName", user.getName());
+            model.addAttribute("userImg", user.getPicture());
+        }
+        return new ModelAndView("games/seyCheese/chapter"+page);
     }
 }
