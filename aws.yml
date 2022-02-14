@@ -1,0 +1,10 @@
+cloud:
+  aws:
+    credentials:
+      instanceProfile: true
+    s3:
+      bucket: sey-community-files
+    region:
+      static: ap-northeast-2
+    stack:
+      auto: false

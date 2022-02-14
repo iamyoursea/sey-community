@@ -9,6 +9,7 @@ version '1.0.2-SNAPSHOT-'+new Date().format("yyyyMMddHHmmss")
 
 repositories {
     mavenCentral()
+    maven { url 'https://repo.spring.io/libs-milestone'}
 }
 
 dependencies {
@@ -54,6 +55,16 @@ dependencies {
 
     // mariaDB
     implementation 'org.mariadb.jdbc:mariadb-java-client'
+
+    // AWS Cloud
+    implementation("org.springframework.cloud:spring-cloud-starter-aws:2.2.6.RELEASE")
+    implementation("commons-io:commons-io:jar:2.8.0")
+}
+
+dependencyManagement {
+    imports {
+        mavenBom("org.springframework.cloud:spring-cloud-dependencies:2020.0.2")
+    }
 }
 
 test {

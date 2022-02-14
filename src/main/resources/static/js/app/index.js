@@ -3,6 +3,7 @@ const main = {
         const _this = this;
         $('#btn-save').on('click', function () {
             _this.save();
+            _this.uploadImage();
         });
 
         $('#btn-update').on('click', function () {
@@ -171,7 +172,25 @@ const main = {
         }).fail(function (error) {
             alert(JSON.stringify(error));
         });
+    },
+
+    uploadImage: function() {
+        const file = $('#img')[0].files[0];
+        const formData = new FormData();
+        formData.append('data', file);
+
+        $.ajax({
+            type: 'POST',
+            url: '/images',
+            data: formData,
+            processData: false,
+            contentType: false
+        }).done(function (data) {
+            $('#result-image').attr("src", data);
+        }).fail(function (error) {
+            alert(error);
+        });
     }
-};
+}
 
 main.init();
