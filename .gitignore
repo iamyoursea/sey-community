@@ -2,3 +2,5 @@
 .idea
 application-oauth.properties
 application-real-db.properties
+#src/main/resources/application-aws.yml
+src/main/resources/application-credentials.yml

@@ -57,13 +57,10 @@ dependencies {
     implementation 'org.mariadb.jdbc:mariadb-java-client'
 
     // AWS Cloud
-    implementation("org.springframework.cloud:spring-cloud-starter-aws:2.2.6.RELEASE")
-}
+    implementation 'org.springframework.cloud:spring-cloud-starter-aws:2.2.6.RELEASE'
 
-dependencyManagement {
-    imports {
-        mavenBom("org.springframework.cloud:spring-cloud-dependencies:2020.0.2")
-    }
+    //configuration processor
+    annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
 }
 
 test {
