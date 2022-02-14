@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@EnableAutoConfiguration(exclude = {ContextInstanceDataAutoConfiguration.class})
+//@EnableAutoConfiguration(exclude = {ContextInstanceDataAutoConfiguration.class})
 public class AwsS3Config {
 
     @Value("${cloud.aws.credentials.access-key}")
