@@ -61,6 +61,11 @@ dependencies {
 
     //configuration processor
     annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
+
+    //Marvin
+    implementation 'com.github.downgoon:marvin:1.5.5'
+    implementation 'com.github.downgoon:MarvinPlugins:1.5.5'
+    implementation group: 'org.springframework', name: 'spring-test'
 }
 
 test {

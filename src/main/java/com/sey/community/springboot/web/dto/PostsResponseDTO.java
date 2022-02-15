@@ -4,12 +4,16 @@ import com.sey.community.springboot.domain.posts.Posts;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.joda.time.DateTime;
+
+import java.time.LocalDateTime;
 
 @Getter
 public class PostsResponseDTO {
 
     private Long id, authorId;
     private String title, content, author;
+    private LocalDateTime modifiedDate;
 
     @Setter
     private Long viewCount;
@@ -20,6 +24,7 @@ public class PostsResponseDTO {
         this.content = entity.getContent();
         this.author = entity.getAuthor();
         this.authorId = entity.getAuthorId();
+        this.modifiedDate = entity.getModifiedDate();
     }
 
 }
