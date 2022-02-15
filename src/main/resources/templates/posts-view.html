@@ -85,14 +85,13 @@
             </tr>
             </thead>
             <tbody id="tbody">
-                <tr id="comment-table" th:each="comment: ${comments}">
-                    <!--<td id="comment-id" th:text="${comment.id}" th:name="${comment.id}"></td>-->
+                <tr id="comment-table" th:each="comment: ${comments}" class="table-secondary">
                     <td th:text="${comment.author}">author</td>
                     <td th:text="${comment.content}">content</td>
                     <td th:text="${comment.modifiedDate}"></td>
                     <td><button th:if="${loginUser ne null and (loginUser.id eq comment.authorId)}"
-                                type="button" class="btn btn-danger" id="btn-com-delete"
-                                th:onclick="|javascript:main.commentDelete(${post.id}, ${comment.id})|">❌</button></td>
+                                type="button" class="btn btn-outline-light" id="btn-com-delete"
+                                th:onclick="|javascript:main.commentDelete(${post.id}, ${comment.id})|">×</button></td>
                 </tr>
             </tbody>
         </table>
