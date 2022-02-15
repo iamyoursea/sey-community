@@ -14,7 +14,6 @@ import java.util.List;
 public class AmazonS3Controller {
 
     private final AmazonS3Service amazonS3Service;
-    private final String bucket = amazonS3Service.getBucket();
 
     /**
      * Amazon S3에 파일 업로드
@@ -22,6 +21,7 @@ public class AmazonS3Controller {
      */
     @PostMapping("/api/v1/img")
     public String uploadImg(@RequestPart List<MultipartFile> multipartFile) {
+        String bucket = amazonS3Service.getBucket();
         amazonS3Service.uploadImg(bucket, multipartFile);
         return "success";
     }
@@ -32,7 +32,7 @@ public class AmazonS3Controller {
      */
     @DeleteMapping("/api/v1/img")
     public String deleteFile(@RequestParam String fileName) {
-        //String bucket = amazonS3Service.getBucket();
+        String bucket = amazonS3Service.getBucket();
         amazonS3Service.deleteFile(bucket, fileName);
         return "success";
     }
