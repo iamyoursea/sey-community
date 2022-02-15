@@ -19,7 +19,7 @@
                 <h1>게시글 등록</h1>
             </div>
         </div>
-        <form>
+        <form enctype="multipart/form-data" method="post">
             <div class="form-group mb-3">
                 <label class="col-form-label" for="input-title">제목</label>
                 <input type="text" class="form-control" placeholder="제목을 입력하세요." id="input-title">
@@ -37,15 +37,10 @@
             </div>
 
             <div class="form-group mb-3">
-                <label for="formFile" class="form-label mt-4">파일 업로드</label>
+                <label for="formFile" class="form-label mt-4" multiple="multiple">파일 업로드</label>
                 <input class="form-control" type="file" id="formFile">
             </div>
         </form>
-
-        <div class="col-md-10">
-            <p><strong>업로드한 이미지</strong></p>
-        <img src="" id="result-image">
-        </div>
 
         <a href="/" role="button" class="btn btn-secondary">취소</a>
         <button type="button" class="btn btn-primary" id="btn-save">등록</button>

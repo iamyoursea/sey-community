@@ -124,6 +124,8 @@ public class IndexController {
             System.out.println(">> LoginUser: " + loginUser.getId());
 
             userId = loginUser.getId();
+        }   else {
+            return "redirect:/";
         }
         Long logId = logService.save(LogSaveRequestDTO.builder().articleId(id).boardName("posts").userId(userId).ipAddress(remoteIp).build());
 
@@ -238,7 +240,7 @@ public class IndexController {
         logService.save(LogSaveRequestDTO.builder().articleId(id).boardName("notice").userId(userId).ipAddress(remoteIp).build());
         
         
-        //헤더ㅏ에 이름/사진 안나옴
+        //헤더에 이름/사진 안나옴
         model.addAttribute("userName", loginUser.getName());
         model.addAttribute("userImg", loginUser.getPicture());
 

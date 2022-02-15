@@ -41,8 +41,8 @@
         </div>
 
         <div class="form-group mb-3">
-            <label>내용</label>
-            <div class="card">
+            <label class="form-label mt-4">내용</label>
+            <div class="card h-100">
                 <div class="card-body">
                     <div id="div-content" th:text="${post.content}" style="overflow: auto; white-space: pre-wrap;">
                         Lorem Ipsum is simply dummy text of the printing and typesetting industry.
@@ -56,6 +56,7 @@
                 </div>
             </div>
         </div>
+
 
         <a th:href="${requestFrom eq 'posts' ? '/' : ('/' + requestFrom)} + ${'?page=' + page}" role="button" class="btn btn-secondary">목록</a>
         <div style="float: right";>
