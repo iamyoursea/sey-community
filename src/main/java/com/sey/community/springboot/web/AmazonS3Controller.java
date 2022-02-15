@@ -14,7 +14,7 @@ import java.util.List;
 public class AmazonS3Controller {
 
     private final AmazonS3Service amazonS3Service;
-    private String bucket = amazonS3Service.getBucket();
+    private final String bucket = amazonS3Service.getBucket();
 
     /**
      * Amazon S3에 파일 업로드
