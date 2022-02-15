@@ -14,6 +14,7 @@ public class PostsResponseDTO {
     private Long id, authorId;
     private String title, content, author;
     private LocalDateTime modifiedDate;
+    private String filePath;
 
     @Setter
     private Long viewCount;
@@ -25,6 +26,7 @@ public class PostsResponseDTO {
         this.author = entity.getAuthor();
         this.authorId = entity.getAuthorId();
         this.modifiedDate = entity.getModifiedDate();
+        this.filePath = entity.getFilePath();
     }
 
 }

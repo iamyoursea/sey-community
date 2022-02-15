@@ -27,7 +27,8 @@ const main = {
             title: $('#input-title').val(),
             author: $('#input-author').val(),
             content: $('#txt-content').val(),
-            authorId: $("#user-id").val()
+            authorId: $("#user-id").val(),
+            fileName: $("formFile").val()
         };
 
         $.ajax({
