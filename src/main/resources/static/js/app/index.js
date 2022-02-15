@@ -43,7 +43,7 @@ const main = {
             url: "/api/v1/" + writeTo,
             dataType: "json",
             contentType: "application/json; charset=utf-8",
-            data: formData
+            data: JSON.stringify(formData)
         }).done(() => {
             alert("글이 등록되었습니다.")
             window.location.href = "/" + (writeTo !== "posts" ? writeTo : "")
