@@ -128,6 +128,10 @@ public class AmazonS3Service {
         }
     }
 
+    public String getFileUrl(String fileName) {
+        return amazonS3.getUrl(bucket, fileName).toString();
+    }
+
     public String getBucket(){
         return bucket;
     }
