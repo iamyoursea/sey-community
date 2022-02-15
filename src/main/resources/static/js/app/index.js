@@ -42,8 +42,10 @@ const main = {
             type: "POST",
             url: "/api/v1/" + writeTo,
             dataType: "json",
-            contentType: "multipart/form-data;",
-            data: JSON.stringify(formData)
+            enctype : "multipart/form-data;",
+            data: JSON.stringify(formData),
+            processData: false, // 필수
+            contentType: false // 필수
         }).done(() => {
             alert("글이 등록되었습니다.")
             window.location.href = "/" + (writeTo !== "posts" ? writeTo : "")
