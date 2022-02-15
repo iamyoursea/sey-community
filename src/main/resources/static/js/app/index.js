@@ -23,6 +23,8 @@ const main = {
 
         const writeTo = $("body").data("writeTo")
 
+        let formData = new FormData();
+
         const data = {
             title: $('#input-title').val(),
             author: $('#input-author').val(),
@@ -30,14 +32,21 @@ const main = {
             authorId: $("#user-id").val()
         };
 
-        data.append('file', $("formFile"));
+        let fileList = $("#formFile")[0].files;
+        for(let i=0; i < fileList.length; i++) {
+            formData.append('files', fileList[i]);
+        }
+
+
+
+        formData.append('key', new Blob([ JSON.stringify(data) ], {type : "application/json"}));
 
         $.ajax({
             type: "POST",
             url: "/api/v1/" + writeTo,
             dataType: "json",
             contentType: "application/json; charset=utf-8",
-            data: JSON.stringify(data)
+            data: formData
         }).done(() => {
             alert("글이 등록되었습니다.")
             window.location.href = "/" + (writeTo !== "posts" ? writeTo : "")
