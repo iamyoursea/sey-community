@@ -27,9 +27,10 @@ const main = {
             title: $('#input-title').val(),
             author: $('#input-author').val(),
             content: $('#txt-content').val(),
-            authorId: $("#user-id").val(),
-            fileName: $("formFile").val()
+            authorId: $("#user-id").val()
         };
+
+        data.append('file', $("formFile"))
 
         $.ajax({
             type: "POST",
