@@ -30,7 +30,7 @@ const main = {
             authorId: $("#user-id").val()
         };
 
-        data.append('file', $("formFile"))
+        data.append('file', $("formFile"));
 
         $.ajax({
             type: "POST",
