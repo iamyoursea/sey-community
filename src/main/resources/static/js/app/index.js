@@ -45,7 +45,7 @@ const main = {
             enctype : "multipart/form-data;",
             data: JSON.stringify(formData),
             processData: false, // 필수
-            contentType: false // 필수
+            contentType: "application/json"
         }).done(() => {
             alert("글이 등록되었습니다.")
             window.location.href = "/" + (writeTo !== "posts" ? writeTo : "")
