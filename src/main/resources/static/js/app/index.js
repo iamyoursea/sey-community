@@ -48,7 +48,7 @@ const main = {
             type: "POST",
             url: "/api/v1/" + writeTo,
             dataType: "json",
-            data: JSON.stringify(formData),
+            data: formData,
             processData: false, // 필수
             contentType: false
         }).done(() => {
