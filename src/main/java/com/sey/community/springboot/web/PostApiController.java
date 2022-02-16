@@ -21,7 +21,8 @@ public class PostApiController {
     private final AmazonS3Service amazonS3Service;
 
     @PostMapping("/api/v1/posts")
-    public Long save(@RequestBody PostsSaveRequestDTO requestDTO, @RequestPart List<MultipartFile> files) {
+    public Long save(@RequestPart(value = "key") PostsSaveRequestDTO requestDTO,
+                     @RequestPart(value = "files", required = false) List<MultipartFile> files) {
         if(!(files ==null)){
             amazonS3Service.uploadImg(amazonS3Service.getBucket(), files);
         }
