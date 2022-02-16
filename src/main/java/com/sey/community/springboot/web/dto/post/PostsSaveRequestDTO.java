@@ -1,4 +1,4 @@
-package com.sey.community.springboot.web.dto;
+package com.sey.community.springboot.web.dto.post;
 
 import com.sey.community.springboot.domain.posts.Posts;
 import lombok.Builder;
@@ -12,17 +12,13 @@ public class PostsSaveRequestDTO {
     private String content;
     private String author;
     private Long authorId;
-    private String fileName;
-    private String filePath;
 
     @Builder
-    public PostsSaveRequestDTO(String title, String content, String author, Long authorId, String fileName, String filePath) {
+    public PostsSaveRequestDTO(String title, String content, String author, Long authorId) {
         this.title = title;
         this.content = content;
         this.author = author;
         this.authorId = authorId;
-        this.fileName = fileName;
-        this.filePath = filePath;
     }
 
     public Posts toEntity() {
@@ -31,8 +27,6 @@ public class PostsSaveRequestDTO {
                 .content(content)
                 .author(author)
                 .authorId(authorId)
-                .fileName(fileName)
-                .filePath(filePath)
                 .build();
     }
 

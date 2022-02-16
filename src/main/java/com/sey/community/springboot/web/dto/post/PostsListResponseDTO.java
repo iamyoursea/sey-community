@@ -1,4 +1,4 @@
-package com.sey.community.springboot.web.dto;
+package com.sey.community.springboot.web.dto.post;
 
 import com.sey.community.springboot.domain.posts.Posts;
 import lombok.Getter;

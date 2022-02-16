@@ -2,10 +2,10 @@ package com.sey.community.springboot.service.posts;
 
 import com.sey.community.springboot.domain.posts.Posts;
 import com.sey.community.springboot.domain.posts.PostsRepository;
-import com.sey.community.springboot.web.dto.PostsListResponseDTO;
-import com.sey.community.springboot.web.dto.PostsResponseDTO;
-import com.sey.community.springboot.web.dto.PostsSaveRequestDTO;
-import com.sey.community.springboot.web.dto.PostsUpdateRequestDTO;
+import com.sey.community.springboot.web.dto.post.PostsListResponseDTO;
+import com.sey.community.springboot.web.dto.post.PostsResponseDTO;
+import com.sey.community.springboot.web.dto.post.PostsSaveRequestDTO;
+import com.sey.community.springboot.web.dto.post.PostsUpdateRequestDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -13,10 +13,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 @RequiredArgsConstructor

@@ -36,13 +36,17 @@ public class AmazonS3Service {
     @Value("${cloud.aws.s3.bucket}")
     private String bucket;
 
+    private List<String> fileNameList = new ArrayList<>();
+
     public List<String> uploadImg(String bucket, List<MultipartFile> multipartFile) {
-        List<String> fileNameList = new ArrayList<>();
+
+        List<String> fileUuidList = new ArrayList<>();
 
         // forEach 구문을 통해 multipartFile로 넘어온 파일들 하나씩 fileNameList에 추가
         multipartFile.forEach(file -> {
-            if(Objects.requireNonNull(file.getContentType()).contains("image")) {
-                String fileName = createFileName(file.getOriginalFilename());
+            if (Objects.requireNonNull(file.getContentType()).contains("image")) {
+                String OriginalFileName = file.getOriginalFilename();
+                String fileName = createFileName(OriginalFileName);
                 String fileFormatName = file.getContentType().substring(file.getContentType().lastIndexOf("/") + 1);
 
                 MultipartFile resizedFile = resizeImage(fileName, fileFormatName, file, 768);
@@ -51,16 +55,21 @@ public class AmazonS3Service {
                 objectMetadata.setContentLength(resizedFile.getSize());
                 objectMetadata.setContentType(file.getContentType());
 
-                try(InputStream inputStream = resizedFile.getInputStream()) {
+                try (InputStream inputStream = resizedFile.getInputStream()) {
                     amazonS3.putObject(new PutObjectRequest(bucket, fileName, inputStream, objectMetadata)
                             .withCannedAcl(CannedAccessControlList.PublicRead));
-                } catch(IOException e) {
+                } catch (IOException e) {
                     throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "이미지 업로드에 실패했습니다.");
                 }
 
-                fileNameList.add(fileName);
+                fileNameList.add(OriginalFileName);
+                fileUuidList.add(fileName);
             }
         });
+        return fileUuidList;
+    }
+
+    public List<String> getFileNameList() {
         return fileNameList;
     }
 
@@ -105,7 +114,7 @@ public class AmazonS3Service {
             int originHeight = image.getHeight();
 
             // origin 이미지가 resizing될 사이즈보다 작을 경우 resizing 작업 안 함
-            if(originWidth < targetWidth)
+            if (originWidth < targetWidth)
                 return originalImage;
 
             MarvinImage imageMarvin = new MarvinImage(image);
@@ -132,7 +141,7 @@ public class AmazonS3Service {
         return amazonS3.getUrl(bucket, fileName).toString();
     }
 
-    public String getBucket(){
+    public String getBucket() {
         return bucket;
     }
 }

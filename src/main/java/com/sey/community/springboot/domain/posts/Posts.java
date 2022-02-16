@@ -30,18 +30,12 @@ public class Posts extends BaseTimeEntity {
 
     private Long authorId;
 
-    private String fileName;
-
-    private String filePath;
-
     @Builder // 빌더 패턴 클래스 생성, 생성자에 포함된 필드만 포함
-    public Posts(String title, String content, String author, Long authorId, String fileName, String filePath) {
+    public Posts(String title, String content, String author, Long authorId) {
         this.title = title;
         this.content = content;
         this.author = author;
         this.authorId = authorId;
-        this.fileName = fileName;
-        this.filePath = filePath;
     }
 
     public void update(String title, String content) {
