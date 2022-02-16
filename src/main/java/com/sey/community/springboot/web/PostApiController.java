@@ -20,19 +20,19 @@ public class PostApiController {
     private final PostsService postsService;
     private final LogApiController logApiController;
     private final AmazonS3Service amazonS3Service;
-    private File file = new File();
+
 
     @PostMapping("/api/v1/posts")
     public Long save(@RequestPart(value = "key") PostsSaveRequestDTO requestDTO,
                      @RequestPart(value = "files", required = false) List<MultipartFile> files) {
         Long postId =  postsService.save(requestDTO);
-        if(!(files ==null)){
-            List<String> fileNames = amazonS3Service.uploadImg(amazonS3Service.getBucket(), files);
-            for (int i=0; i<fileNames.size(); i++){
+        List<String> fileNames = amazonS3Service.uploadImg(amazonS3Service.getBucket(), files);
+        File file = new File();
+
+        for (int i=0; i<fileNames.size(); i++){
                 file.setPostId(postId);
                 file.setFileUuid(fileNames.get(i));
                 file.setFileName((amazonS3Service.getFileNameList()).get(i));
-            }
         }
         return postId;
     }
