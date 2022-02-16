@@ -1,8 +1,11 @@
 package com.sey.community.springboot.web;
 
 import com.sey.community.springboot.domain.file.File;
+import com.sey.community.springboot.domain.file.FileRepository;
+import com.sey.community.springboot.domain.posts.PostsRepository;
 import com.sey.community.springboot.service.posts.AmazonS3Service;
 import com.sey.community.springboot.service.posts.PostsService;
+import com.sey.community.springboot.web.dto.file.FileResponseDTO;
 import com.sey.community.springboot.web.dto.post.PostsResponseDTO;
 import com.sey.community.springboot.web.dto.post.PostsSaveRequestDTO;
 
@@ -20,19 +23,19 @@ public class PostApiController {
     private final PostsService postsService;
     private final LogApiController logApiController;
     private final AmazonS3Service amazonS3Service;
-
+    private final FileRepository fileRepository;
 
     @PostMapping("/api/v1/posts")
     public Long save(@RequestPart(value = "key") PostsSaveRequestDTO requestDTO,
                      @RequestPart(value = "files", required = false) List<MultipartFile> files) {
         Long postId =  postsService.save(requestDTO);
         List<String> fileNames = amazonS3Service.uploadImg(amazonS3Service.getBucket(), files);
-        File file = new File();
-
         for (int i=0; i<fileNames.size(); i++){
-                file.setPostId(postId);
-                file.setFileUuid(fileNames.get(i));
-                file.setFileName((amazonS3Service.getFileNameList()).get(i));
+                fileRepository.save(File.builder()
+                        .fileName(amazonS3Service.getFileNameList().get(i))
+                        .fileUuid(fileNames.get(i))
+                        .postId(postId)
+                        .build());
         }
         return postId;
     }

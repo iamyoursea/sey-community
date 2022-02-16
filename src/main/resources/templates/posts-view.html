@@ -58,6 +58,8 @@
         </div>
 
 
+
+
         <a th:href="${requestFrom eq 'posts' ? '/' : ('/' + requestFrom)} + ${'?page=' + page}" role="button" class="btn btn-secondary">목록</a>
         <div style="float: right";>
             <a th:if="${loginUser ne null and (loginUser.id eq post.authorId)}" role="button" class="btn btn-outline-primary" th:href="${'/' + requestFrom + '/update/' + post.id}">수정</a>
@@ -65,6 +67,7 @@
         </div>
     </div>
     <br>
+
 
     <!--댓글 영역-->
     <div class="row">
