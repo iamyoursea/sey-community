@@ -120,7 +120,7 @@ const main = {
             data: JSON.stringify(data)
         }).done(function() {
             alert('댓글이 등록되었습니다.');
-            location.href = '/posts/view/'+data.parentId;
+            location.href = window.location.href;
         }).fail(function (error) {
             alert(JSON.stringify(error));
         });
@@ -161,7 +161,7 @@ const main = {
             contentType:'application/json; charset=utf-8'
         }).done(function() {
             alert('댓글이 삭제되었습니다.');
-            location.href = '/posts/view/'+postId;
+            location.href = window.location.href;
         }).fail(function (error) {
             alert(JSON.stringify(error));
         });
