@@ -2,6 +2,7 @@ package com.sey.community.springboot.web;
 
 import com.sey.community.springboot.config.auth.LoginUser;
 import com.sey.community.springboot.config.auth.dto.SessionUser;
+import com.sey.community.springboot.domain.comments.CommentsRepository;
 import com.sey.community.springboot.domain.file.File;
 import com.sey.community.springboot.domain.file.FileRepository;
 import com.sey.community.springboot.service.posts.CommentsService;
@@ -33,6 +34,7 @@ public class IndexController {
     private final CommentsService commentsService;
     private final LogService logService;
     private final FileRepository fileRepository;
+    private final CommentsRepository commentsRepository;
 
     private static final Integer POSTS_PER_PAGE = 10;
     private static final Integer PAGES_PER_BLOCK = 5;
@@ -40,7 +42,6 @@ public class IndexController {
     @GetMapping("/")
     public String index(Model model, @LoginUser SessionUser user,
                         @RequestParam(value = "page", defaultValue = "1") Integer page) {
-
 
         // 글 목록 전송
         model.addAttribute("boardTitle", "자유게시판");
