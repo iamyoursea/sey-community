@@ -113,7 +113,7 @@ public class IndexController {
                            @LoginUser SessionUser loginUser,
                            HttpServletRequest request) {
 
-        List<String> fileUuids = fileRepository.findAllByPostId(id);
+        List<String> fileUuids = fileRepository.findUuidByPostId(id);
 
         PostsResponseDTO dto = postsService.findById(id);
         dto.setViewCount(logService.getViewCountByBoardNameAndArticleId("posts", dto.getId()));
@@ -121,7 +121,9 @@ public class IndexController {
         model.addAttribute("loginUser", loginUser);
         model.addAttribute("requestFrom", "posts");
         model.addAttribute("page", page);
-        model.addAttribute("files", fileUuids);
+        if(fileUuids!=null) {
+            model.addAttribute("files", fileUuids);
+        }
 
         Long userId = -99l;
         String remoteIp = request.getRemoteAddr();
