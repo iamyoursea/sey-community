@@ -40,6 +40,12 @@
             <input type="text" class="form-control" id="view-count" th:value="${post.viewCount}" readonly value="3">
         </div>
 
+        <div class="form-group mb-3" th:if="${files}!=null">
+            <label class="col-form-label" for="image">이미지</label>
+            <li th:each="img: ${files}">
+            <img th:src="@{https://sey-community-files.s3.ap-northeast-2.amazonaws.com/static/${img}}" id="image">
+            </li>
+        </div>
         <div class="form-group mb-3">
             <label class="form-label mt-4">내용</label>
             <div class="card h-100">
@@ -56,8 +62,6 @@
                 </div>
             </div>
         </div>
-
-
 
 
         <a th:href="${requestFrom eq 'posts' ? '/' : ('/' + requestFrom)} + ${'?page=' + page}" role="button" class="btn btn-secondary">목록</a>

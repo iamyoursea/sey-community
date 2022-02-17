@@ -18,6 +18,9 @@ public class PostsResponseDTO {
     @Setter
     private Long viewCount;
 
+    @Setter
+    private String fileName;
+
     public PostsResponseDTO(Posts entity) {
         this.id = entity.getId();
         this.title = entity.getTitle();

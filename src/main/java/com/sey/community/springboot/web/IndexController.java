@@ -2,6 +2,8 @@ package com.sey.community.springboot.web;
 
 import com.sey.community.springboot.config.auth.LoginUser;
 import com.sey.community.springboot.config.auth.dto.SessionUser;
+import com.sey.community.springboot.domain.file.File;
+import com.sey.community.springboot.domain.file.FileRepository;
 import com.sey.community.springboot.service.posts.CommentsService;
 import com.sey.community.springboot.service.posts.LogService;
 import com.sey.community.springboot.service.posts.NoticeService;
@@ -30,6 +32,7 @@ public class IndexController {
     private final NoticeService noticeService;
     private final CommentsService commentsService;
     private final LogService logService;
+    private final FileRepository fileRepository;
 
     private static final Integer POSTS_PER_PAGE = 10;
     private static final Integer PAGES_PER_BLOCK = 5;
@@ -110,12 +113,15 @@ public class IndexController {
                            @LoginUser SessionUser loginUser,
                            HttpServletRequest request) {
 
+        List<String> fileUuids = fileRepository.findAllByPostId(id);
+
         PostsResponseDTO dto = postsService.findById(id);
         dto.setViewCount(logService.getViewCountByBoardNameAndArticleId("posts", dto.getId()));
         model.addAttribute("post", dto);
         model.addAttribute("loginUser", loginUser);
         model.addAttribute("requestFrom", "posts");
         model.addAttribute("page", page);
+        model.addAttribute("files", fileUuids);
 
         Long userId = -99l;
         String remoteIp = request.getRemoteAddr();
